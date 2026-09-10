@@ -41,8 +41,12 @@ except Exception as e:     # incompatibilidade de versao nao pode derrubar o scr
 
 import requests
 
-CACHE = sys.argv[1] if len(sys.argv) > 1 else "iucn_global.csv"
+ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
+TESTE = "--teste" in sys.argv
+CACHE = ARGS[0] if ARGS else "iucn_global.csv"
 GBIF = "https://api.gbif.org/v1"
+# Taxonomia de Referencia do GBIF (GBIF Backbone Taxonomy)
+BACKBONE = "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"
 THREADS = 8
 PENDENTES = ["HIGHERRANK", "sem match", "sem match (só gênero)", "erro", ""]
 COLUNAS = ["nome_cientifico", "gbif_key", "gbif_nome_aceito", "gbif_match",
@@ -69,8 +73,8 @@ def get(url, params=None, tentativas=4):
             r = sessao().get(url, params=params, timeout=30)
             if r.status_code == 200:
                 return r.json(), ""
-            if r.status_code == 404:
-                return None, ""
+            if r.status_code in (204, 404):
+                return None, ""      # sem conteudo: o taxon nao tem categoria
             ultimo = f"HTTP {r.status_code}"
         except Exception as e:                 # qualquer erro, nao so RequestException
             ultimo = f"{type(e).__name__}: {e}"
@@ -91,15 +95,21 @@ def consultar(nome):
         out["gbif_match"] = "sem match"; return out
     if m.get("matchType") == "HIGHERRANK":
         # so achou o genero: a busca textual enxerga sinonimo sob outro genero
-        sr, err = get(f"{GBIF}/species/search", {"q": nome, "rank": "SPECIES", "limit": 20})
+        # restrito ao backbone: iucnRedListCategory so entende chave do backbone.
+        # Sem esse filtro, a busca devolve chave de catalogo regional e a categoria
+        # nunca e encontrada, fazendo tudo cair em NE.
+        sr, err = get(f"{GBIF}/species/search",
+                      {"q": nome, "rank": "SPECIES", "limit": 20, "datasetKey": BACKBONE})
         if err:
             out["gbif_match"] = "erro"; out["erro"] = err; return out
         cand = [r for r in (sr or {}).get("results", []) if r.get("canonicalName", "").lower() == nome.lower()]
         if not cand:
             out["gbif_match"] = "sem match (só gênero)"; return out
         c = cand[0]
-        m = {"matchType": "SEARCH", "confidence": 90, "usageKey": c.get("key"),
-             "acceptedUsageKey": c.get("acceptedKey"), "canonicalName": c.get("canonicalName", "")}
+        m = {"matchType": "SEARCH", "confidence": 90,
+             "usageKey": c.get("nubKey") or c.get("key"),
+             "acceptedUsageKey": c.get("acceptedNubKey") or c.get("acceptedKey"),
+             "canonicalName": c.get("canonicalName", "")}
     out["gbif_match"] = m.get("matchType", "")
     out["gbif_confianca"] = m.get("confidence", "")
     if m.get("matchType") == "FUZZY" and m.get("confidence", 0) < 90:
@@ -162,6 +172,31 @@ if err or not teste:
     print("  variaveis HTTP_PROXY/HTTPS_PROXY nao configuradas nesta sessao.")
     sys.exit(2)
 print(f"  ok ({teste.get('canonicalName','?')} respondeu)")
+
+# ------------------------------------------------------------------ 2b. modo teste
+if TESTE:
+    CONTROLE = [
+        ("Pauxi mitu", "sinonimo de Mitu mitu, mutum-de-alagoas, EW na Lista Vermelha"),
+        ("Amadonastur lacernulatus", "gaviao-pombo-pequeno, VU no SALVE"),
+        ("Dendrocincla taunayi", "arapacu, EN no SALVE"),
+        ("Crypturellus zabele", "zabele, VU no SALVE"),
+    ]
+    print("\n" + "=" * 62)
+    print("MODO TESTE: nada sera gravado")
+    print("=" * 62)
+    for nome, nota in CONTROLE:
+        r = consultar(nome)
+        print(f"\n{nome}")
+        print(f"  esperado : {nota}")
+        print(f"  match    : {r['gbif_match']}  (chave GBIF {r['gbif_key'] or 'nenhuma'})")
+        print(f"  aceito   : {r['gbif_nome_aceito'] or 'nao resolvido'}")
+        print(f"  IUCN     : {r['iucn_codigo'] or 'vazio'}  {r['categoria_iucn_global']}")
+        if r["erro"]:
+            print(f"  erro     : {r['erro']}")
+    print("\n" + "=" * 62)
+    print("Se 'Pauxi mitu' aparecer como Mitu mitu com IUCN EW, a correcao funcionou.")
+    print("Rode entao sem --teste para processar as 568.")
+    sys.exit(0)
 
 # ------------------------------------------------------------------ 3. consulta
 print(f"\n{len(pend)} especies a reconsultar...")
