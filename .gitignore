@@ -1,0 +1,11 @@
+# exportações brutas do SALVE e saídas geradas ficam fora do repo (pesadas, regeráveis)
+dados/salve_export/*.csv
+saida/*
+*.xlsx
+salve_fauna_consolidado.csv
+iucn_global.csv
+__pycache__/
+
+# exceções: versionados porque alimentam o webapp HTML
+!saida/.gitkeep
+!saida/salve_fauna.xlsx

@@ -1,0 +1,800 @@
+n|novo|grupo|familia|especie|cat
+1||AN|Aromobatidae|Anomaloglossus apiau|EN
+2||AN|Aromobatidae|Anomaloglossus tepequem|CR (PE)
+3||AN|Brachycephalidae|Brachycephalus mirissimus|VU
+4||AN|Brachycephalidae|Brachycephalus pernix|CR
+5||AN|Brachycephalidae|Brachycephalus quiririensis|EN
+6||AN|Brachycephalidae|Ischnocnema epipeda|CR (PE)
+7||AN|Brachycephalidae|Ischnocnema garciai|CR
+8||AN|Brachycephalidae|Ischnocnema karst|VU
+9||AN|Brachycephalidae|Ischnocnema manezinho|EN
+10||AN|Bufonidae|Melanophryniscus admirabilis|CR
+11||AN|Bufonidae|Melanophryniscus biancae|EN
+12||AN|Bufonidae|Melanophryniscus cambaraensis|EN
+13||AN|Bufonidae|Melanophryniscus formosus|VU
+14||AN|Bufonidae|Melanophryniscus klappenbachi|VU
+15||AN|Bufonidae|Melanophryniscus macrogranulosus|EN
+16||AN|Bufonidae|Melanophryniscus montevidensis|VU
+17||AN|Bufonidae|Melanophryniscus setiba|VU
+18||AN|Bufonidae|Rhinella casconi|CR
+19||AN|Ceratophryidae|Ceratophrys ornata|CR (PE)
+20||AN|Cycloramphidae|Cycloramphus diringshofeni|CR
+21||AN|Cycloramphidae|Cycloramphus faustoi|VU
+22||AN|Cycloramphidae|Cycloramphus stejnegeri|CR (PE)
+23||AN|Cycloramphidae|Thoropa lutzi|CR (PE)
+24||AN|Cycloramphidae|Thoropa petropolitana|CR (PE)
+25||AN|Eleutherodactylidae|Adelophryne maranguapensis|CR
+26||AN|Hylidae|Boana buriti|VU
+27||AN|Hylidae|Bokermannohyla napolii|VU
+28||AN|Hylidae|Bokermannohyla vulcaniae|EN
+29||AN|Hylidae|Julianus pinimus|VU
+30||AN|Hylidae|Nyctimantis pomba|CR
+31||AN|Hylidae|Ololygon alcatraz|VU
+32||AN|Hylidae|Ololygon faivovichi|VU
+33||AN|Hylidae|Ololygon muriciensis|CR
+34||AN|Hylidae|Ololygon peixotoi|CR (PE)
+35||AN|Hylidae|Sphaenorhynchus bromelicola|EN
+36||AN|Hylidae|Sphaenorhynchus cammaeus|CR
+37||AN|Hylidae|Sphaenorhynchus canga|CR
+38||AN|Hylidae|Xenohyla truncata|VU
+39||AN|Hylodidae|Crossodactylus boulengeri|CR (PE)
+40||AN|Hylodidae|Crossodactylus dantei|CR
+41||AN|Hylodidae|Crossodactylus dispar|CR (PE)
+42||AN|Hylodidae|Crossodactylus franciscanus|CR (PE)
+43||AN|Hylodidae|Hylodes glaber|CR (PE)
+44||AN|Hylodidae|Hylodes magalhaesi|VU
+45||AN|Hylodidae|Hylodes mertensi|CR
+46||AN|Hylodidae|Hylodes sazimai|EN
+47||AN|Leptodactylidae|Crossodactylodes itambe|CR
+48||AN|Leptodactylidae|Crossodactylodes izecksohni|EN
+49||AN|Leptodactylidae|Paratelmatobius lutzii|CR (PE)
+50||AN|Leptodactylidae|Physalaemus soaresi|CR
+51||AN|Microhylidae|Chiasmocleis alagoana|VU
+52||AN|Odontophrynidae|Proceratophrys ararype|CR
+53||AN|Odontophrynidae|Proceratophrys palustris|CR
+54||AN|Odontophrynidae|Proceratophrys sanctaritae|CR
+55||AN|Phyllomedusidae|Phrynomedusa marginata|CR (PE)
+56||AN|Phyllomedusidae|Phrynomedusa vanzolinii|CR (PE)
+57||AN|Phyllomedusidae|Pithecopus rusticus|CR
+58||AN|Strabomantidae|Euparkerella robusta|CR
+59||AN|Strabomantidae|Holoaden bradei|CR (PE)
+60||AV|Accipitridae|Amadonastur lacernulatus|VU
+61||AV|Accipitridae|Circus cinereus|VU
+62||AV|Accipitridae|Leptodon forbesi|EN
+63||AV|Accipitridae|Urubitinga coronata|EN
+64||AV|Anatidae|Mergus octosetaceus|CR
+65||AV|Trochilidae|Augastes lumachella|VU
+66||AV|Trochilidae|Campylopterus calcirupicola|VU
+67||AV|Trochilidae|Colibri delphinae greenewalti|VU
+68||AV|Trochilidae|Discosura langsdorffi langsdorffi|EN
+69||AV|Trochilidae|Glaucis dohrnii|VU
+70||AV|Trochilidae|Lophornis gouldii|VU
+71||AV|Trochilidae|Phaethornis major|VU
+72||AV|Trochilidae|Phaethornis margarettae|EN
+73||AV|Trochilidae|Thalurania watertonii|EN
+74||AV|Caprimulgidae|Hydropsalis candicans|EN
+75||AV|Burhinidae|Burhinus bistriatus|VU
+76||AV|Charadriidae|Charadrius wilsonia|VU
+77||AV|Laridae|Sterna dougallii|VU
+78||AV|Laridae|Sterna hirundinacea|VU
+79||AV|Laridae|Thalasseus acuflavidus|VU
+80||AV|Laridae|Thalasseus maximus|EN
+81||AV|Scolopacidae|Calidris canutus|VU
+82||AV|Scolopacidae|Calidris pusilla|EN
+83||AV|Scolopacidae|Calidris subruficollis|VU
+84||AV|Scolopacidae|Limnodromus griseus|EN
+85||AV|Scolopacidae|Numenius hudsonicus|VU
+86||AV|Columbidae|Columbina cyanopis|CR
+87||AV|Columbidae|Paraclaravis geoffroyi|CR (PE)
+88||AV|Momotidae|Momotus momota marcgravianus|EN
+89||AV|Cuculidae|Neomorphus geoffroyi amazonicus|VU
+90||AV|Cuculidae|Neomorphus geoffroyi dulcis|EN
+91||AV|Cuculidae|Neomorphus geoffroyi geoffroyi|CR (PE)
+92||AV|Cuculidae|Neomorphus squamiger|VU
+93|*|AV|Falconidae|Micrastur mintoni|VU
+94||AV|Bucconidae|Malacoptila minor|VU
+95||AV|Bucconidae|Monasa morphoeus morphoeus|EN
+96||AV|Cracidae|Aburria cujubi|VU
+97||AV|Cracidae|Aburria jacutinga|EN
+98||AV|Cracidae|Crax blumenbachii|EN
+99||AV|Cracidae|Crax fasciolata pinima|CR
+100||AV|Cracidae|Crax globulosa|EN
+101||AV|Cracidae|Ortalis remota|CR
+102||AV|Cracidae|Pauxi mitu|EW
+103||AV|Cracidae|Penelope jacucaca|VU
+104||AV|Cracidae|Penelope pileata|VU
+105||AV|Cracidae|Penelope superciliaris alagoensis|EN
+106||AV|Odontophoridae|Odontophorus capueira plumbeicollis|CR
+107||AV|Psophiidae|Psophia dextralis|VU
+108||AV|Psophiidae|Psophia interjecta|EN
+109||AV|Psophiidae|Psophia obscura|CR
+110||AV|Psophiidae|Psophia viridis|VU
+111||AV|Rallidae|Laterallus xenopterus|EN
+112||AV|Nyctibiidae|Nyctibius aethereus aethereus|EN
+113||AV|Nyctibiidae|Nyctibius leucopterus|CR
+114||AV|Cardinalidae|Granatellus pelzelni paraensis|VU
+115||AV|Conopophagidae|Conopophaga cearae|EN
+116||AV|Conopophagidae|Conopophaga lineata lineata|VU
+117||AV|Corvidae|Cyanocorax hafferi|VU
+118||AV|Cotingidae|Cotinga maculata|EN
+119||AV|Cotingidae|Lipaugus conditus|VU
+120|*|AV|Cotingidae|Procnias averano averano|EN
+121||AV|Cotingidae|Xipholena atropurpurea|VU
+122||AV|Cotingidae|Xipholena lamellipennis|VU
+123||AV|Dendrocolaptidae|Campylorhamphus cardosoi|VU
+124||AV|Dendrocolaptidae|Campylorhamphus multostriatus|VU
+125||AV|Dendrocolaptidae|Campylorhamphus trochilirostris trochilirostris|VU
+126||AV|Dendrocolaptidae|Dendrexetastes paraensis paraensis|VU
+127||AV|Dendrocolaptidae|Dendrocincla merula badia|VU
+128||AV|Dendrocolaptidae|Dendrocincla taunayi|EN
+129||AV|Dendrocolaptidae|Dendrocolaptes medius|VU
+130||AV|Dendrocolaptidae|Dendrocolaptes retentus|VU
+131||AV|Dendrocolaptidae|Dendrocolaptes transfasciatus|VU
+132||AV|Dendrocolaptidae|Hylexetastes uniformis|VU
+133|*|AV|Dendrocolaptidae|Lepidocolaptes wagleri|EN
+134||AV|Dendrocolaptidae|Xiphocolaptes carajaensis|VU
+135||AV|Dendrocolaptidae|Xiphocolaptes falcirostris|VU
+136||AV|Dendrocolaptidae|Xiphorhynchus atlanticus|VU
+137||AV|Dendrocolaptidae|Xiphorhynchus guttatoides gracilirostris|EN
+138||AV|Formicariidae|Chamaeza nobilis fulvipectus|VU
+139||AV|Fringillidae|Spinus yarrellii|VU
+140||AV|Furnariidae|Acrobatornis fonsecai|VU
+141||AV|Furnariidae|Anabazenops dorsalis|VU
+142||AV|Furnariidae|Asthenes luizae|EN
+143||AV|Furnariidae|Automolus lammi|EN
+144||AV|Furnariidae|Cinclodes espinhacensis|EN
+145||AV|Furnariidae|Coryphistera alaudina|CR
+146||AV|Furnariidae|Leptasthenura platensis|CR
+147||AV|Furnariidae|Synallaxis infuscata|EN
+148||AV|Furnariidae|Synallaxis kollari|VU
+149||AV|Furnariidae|Syndactyla ucayalae|VU
+150||AV|Furnariidae|Thripophaga macroura|VU
+151||AV|Grallariidae|Grallaria varia distincta|VU
+152||AV|Grallariidae|Grallaria varia intercedens|EN
+153|*|AV|Grallariidae|Hylopezus ochroleucus|VU
+154||AV|Grallariidae|Hylopezus paraensis|VU
+155||AV|Grallariidae|Hylopezus whittakeri|VU
+156||AV|Icteridae|Anumara forbesi|VU
+157||AV|Icteridae|Cacicus koepckeae|VU
+158||AV|Motacillidae|Anthus nattereri|VU
+159||AV|Onychorhynchidae|Onychorhynchus swainsoni|VU
+160||AV|Oxyruncidae|Oxyruncus cristatus tocantinsi|VU
+161||AV|Passerellidae|Arremonops conirostris|EN
+162||AV|Pipridae|Antilophia bokermanni|EN
+163||AV|Pipridae|Lepidothrix iris|EN
+164||AV|Pipridae|Lepidothrix vilasboasi|EN
+165||AV|Pipridae|Neopelma aurifrons|EN
+166||AV|Platyrinchidae|Calyptura cristata|CR (PE)
+167||AV|Platyrinchidae|Platyrinchus leucoryphus|VU
+168||AV|Platyrinchidae|Platyrinchus niveigularis|VU
+169||AV|Rhinocryptidae|Eleoscytalopus psychopompus|EN
+170||AV|Rhinocryptidae|Merulaxis stresemanni|CR
+171||AV|Rhinocryptidae|Scytalopus diamantinensis|VU
+172||AV|Rhinocryptidae|Scytalopus gonzagai|EN
+173||AV|Rhinocryptidae|Scytalopus iraiensis|EN
+174||AV|Rhinocryptidae|Scytalopus novacapitalis|EN
+175||AV|Rhynchocyclidae|Cnipodectes superrufus|VU
+176||AV|Rhynchocyclidae|Hemitriccus kaempferi|VU
+177||AV|Rhynchocyclidae|Hemitriccus mirandae|EN
+178||AV|Rhynchocyclidae|Phylloscartes ceciliae|EN
+179||AV|Rhynchocyclidae|Phylloscartes roquettei|EN
+180||AV|Rhynchocyclidae|Poecilotriccus albifacies|VU
+181||AV|Scleruridae|Geositta poeciloptera|VU
+182||AV|Scleruridae|Sclerurus caudacutus caligineus|CR
+183||AV|Scleruridae|Sclerurus caudacutus umbretta|CR
+184||AV|Scleruridae|Sclerurus cearensis|EN
+185||AV|Scleruridae|Sclerurus macconnelli bahiae|EN
+186||AV|Thamnophilidae|Clytoctantes atrogularis|VU
+187||AV|Thamnophilidae|Dysithamnus plumbeus|EN
+188||AV|Thamnophilidae|Epinecrophylla dentei|VU
+189||AV|Thamnophilidae|Formicivora acutirostris|VU
+190||AV|Thamnophilidae|Formicivora erythronotos|CR
+191||AV|Thamnophilidae|Formicivora grantsaui|VU
+192|*|AV|Thamnophilidae|Formicivora iheringi|VU
+193||AV|Thamnophilidae|Formicivora littoralis|EN
+194||AV|Thamnophilidae|Formicivora paludicola|CR
+195||AV|Thamnophilidae|Hypocnemis hypoxantha ochraceiventris|VU
+196||AV|Thamnophilidae|Hypocnemis ochrogyna|VU
+197||AV|Thamnophilidae|Hypocnemis striata|VU
+198||AV|Thamnophilidae|Myrmoderus ruficauda|EN
+199||AV|Thamnophilidae|Myrmotherula fluminensis|CR (PE)
+200||AV|Thamnophilidae|Myrmotherula minor|VU
+201||AV|Thamnophilidae|Myrmotherula oreni|VU
+202||AV|Thamnophilidae|Myrmotherula snowi|CR
+203||AV|Thamnophilidae|Myrmotherula urosticta|VU
+204||AV|Thamnophilidae|Phlegopsis borbae|VU
+205||AV|Thamnophilidae|Phlegopsis nigromaculata confinis|VU
+206||AV|Thamnophilidae|Pyriglena atra|EN
+207||AV|Thamnophilidae|Pyriglena pernambucensis|VU
+208||AV|Thamnophilidae|Rhegmatorhina gymnops|VU
+209||AV|Thamnophilidae|Rhegmatorhina hoffmannsi|VU
+210||AV|Thamnophilidae|Rhopornis ardesiacus|VU
+211||AV|Thamnophilidae|Terenura sicki|EN
+212||AV|Thamnophilidae|Thamnomanes caesius caesius|EN
+213||AV|Thamnophilidae|Thamnophilus aethiops distans|EN
+214||AV|Thamnophilidae|Thamnophilus caerulescens cearensis|VU
+215||AV|Thamnophilidae|Thamnophilus caerulescens pernambucensis|VU
+216||AV|Thamnophilidae|Thamnophilus nigrocinereus huberi|VU
+217||AV|Thamnophilidae|Thamnophilus nigrocinereus tschudii|EN
+218||AV|Thraupidae|Conothraupis mesoleuca|EN
+219||AV|Thraupidae|Coryphaspiza melanotis|VU
+220||AV|Thraupidae|Gubernatrix cristata|CR
+221||AV|Thraupidae|Nemosia rourei|CR
+222||AV|Thraupidae|Sporophila beltoni|EN
+223||AV|Thraupidae|Sporophila falcirostris|VU
+224||AV|Thraupidae|Sporophila frontalis|VU
+225||AV|Thraupidae|Sporophila maximiliani|CR
+226||AV|Thraupidae|Sporophila melanogaster|VU
+227||AV|Thraupidae|Sporophila nigrorufa|VU
+228||AV|Thraupidae|Tangara cyanocephala cearensis|VU
+229||AV|Thraupidae|Tangara fastuosa|VU
+230||AV|Thraupidae|Tangara velia signata|VU
+231||AV|Tityridae|Iodopleura pipra leucopygia|EN
+232||AV|Tityridae|Laniisoma elegans|EN
+233||AV|Tityridae|Schiffornis turdina intermedia|EN
+234||AV|Troglodytidae|Cyphorhinus griseolateralis|VU
+235||AV|Turdidae|Cichlopsis leucogenys|EN
+236||AV|Tyrannidae|Alectrurus tricolor|VU
+237||AV|Tyrannidae|Attila spadiceus uropygiatus|EN
+238||AV|Tyrannidae|Contopus nigrescens|VU
+239||AV|Tyrannidae|Elaenia ridleyana|VU
+240||AV|Tyrannidae|Heteroxolmis dominicanus|VU
+241||AV|Tyrannidae|Knipolegus franciscanus|VU
+242||AV|Tyrannidae|Phyllomyias reiseri|EN
+243||AV|Tyrannidae|Serpophaga hypoleuca pallida|VU
+244||AV|Tyrannidae|Stigmatura napensis napensis|VU
+245||AV|Vireonidae|Vireo gracilirostris|VU
+246||AV|Xenopidae|Xenops minutus alagoanus|VU
+247||AV|Phaethontidae|Phaethon aethereus|EN
+248||AV|Phaethontidae|Phaethon lepturus|EN
+249||AV|Capitonidae|Capito dayi|VU
+250||AV|Picidae|Celeus flavus subflavus|CR
+251||AV|Picidae|Celeus galeatus|EN
+252||AV|Picidae|Celeus obrieni|VU
+253||AV|Picidae|Celeus torquatus pieteroyensi|VU
+254||AV|Picidae|Celeus torquatus tinnunculus|EN
+255||AV|Picidae|Piculus paraensis|VU
+256||AV|Picidae|Piculus polyzonus|EN
+257||AV|Ramphastidae|Pteroglossus bitorquatus bitorquatus|VU
+258||AV|Diomedeidae|Diomedea dabbenena|CR
+259||AV|Diomedeidae|Diomedea epomophora|VU
+260||AV|Diomedeidae|Diomedea exulans|CR
+261||AV|Diomedeidae|Diomedea sanfordi|EN
+262||AV|Diomedeidae|Thalassarche chlororhynchos|EN
+263||AV|Procellariidae|Procellaria aequinoctialis|VU
+264||AV|Procellariidae|Pterodroma arminjoniana|CR
+265||AV|Procellariidae|Pterodroma deserta|VU
+266||AV|Procellariidae|Pterodroma incerta|EN
+267||AV|Procellariidae|Pterodroma madeira|EN
+268||AV|Procellariidae|Puffinus lherminieri|CR
+269||AV|Psittacidae|Amazona pretrei|VU
+270||AV|Psittacidae|Amazona rhodocorytha|VU
+271||AV|Psittacidae|Amazona vinacea|VU
+272|*|AV|Psittacidae|Anodorhynchus hyacinthinus|VU
+273||AV|Psittacidae|Anodorhynchus leari|VU
+274||AV|Psittacidae|Aratinga solstitialis|EN
+275||AV|Psittacidae|Cyanopsitta spixii|CR (PE)
+276||AV|Psittacidae|Guaruba guarouba|VU
+277||AV|Psittacidae|Pionus reichenowi|VU
+278||AV|Psittacidae|Pyrilia vulturina|VU
+279||AV|Psittacidae|Pyrrhura amazonum|VU
+280||AV|Psittacidae|Pyrrhura anerythra|VU
+281||AV|Psittacidae|Pyrrhura coerulescens|VU
+282||AV|Psittacidae|Pyrrhura cruentata|VU
+283||AV|Psittacidae|Pyrrhura griseipectus|EN
+284||AV|Psittacidae|Pyrrhura leucotis|VU
+285||AV|Psittacidae|Pyrrhura molinae|VU
+286||AV|Psittacidae|Pyrrhura pallescens|VU
+287||AV|Psittacidae|Pyrrhura perlata|VU
+288||AV|Psittacidae|Pyrrhura pfrimeri|EN
+289||AV|Psittacidae|Touit melanonotus|VU
+290||AV|Psittacidae|Touit surdus|VU
+291|*|AV|Strigidae|Megascops alagoensis|EN
+292||AV|Strigidae|Pulsatrix perspicillata pulsatrix|CR
+293||AV|Fregatidae|Fregata minor|CR
+294||AV|Fregatidae|Fregata trinitatis|CR
+295||AV|Sulidae|Sula sula|EN
+296||AV|Tinamidae|Crypturellus zabele|VU
+297||AV|Tinamidae|Nothura minor|EN
+298||AV|Tinamidae|Taoniscus nanus|EN
+299||AV|Tinamidae|Tinamus tao|VU
+300||AV|Trogonidae|Trogon collaris eytoni|EN
+301|*|AV|Trogonidae|Trogon muriciensis|CR
+302||IT|Charinidae|Charinus asturius|EN
+303||IT|Charinidae|Charinus caatingae|CR
+304||IT|Charinidae|Charinus eleonorae|EN
+305||IT|Charinidae|Charinus potiguar|EN
+306||IT|Charinidae|Charinus spelaeus|VU
+307||IT|Charinidae|Charinus taboa|CR
+308||IT|Caponiidae|Carajas paraua|EN
+309||IT|Caponiidae|Tisentnops onix|CR
+310||IT|Ctenidae|Isoctenus corymbus|CR
+311||IT|Dipluridae|Harmonicon cerberus|CR
+312||IT|Drymusidae|Drymusa spelunca|CR
+313||IT|Gnaphosidae|Brasilomma enigmatica|EN
+314|*|IT|Gnaphosidae|Indiani gaspar|CR
+315||IT|Gnaphosidae|Tricongius ybyguara|VU
+316||IT|Ochyroceratidae|Ochyrocera ibitipoca|EN
+317|*|IT|Ochyroceratidae|Ochyrocera ritxoco|EN
+318|*|IT|Ochyroceratidae|Ochyrocera ritxoo|EN
+319|*|IT|Ochyroceratidae|Ochyrocera rosinha|VU
+320||IT|Ochyroceratidae|Speocera eleonorae|EN
+321||IT|Pholcidae|Metagonia diamantina|CR
+322||IT|Pholcidae|Metagonia potiguar|CR
+323|*|IT|Prodidomidae|Paracymbiomma caecus|EN
+324||IT|Segestriidae|Ariadna aurea|VU
+325||IT|Sicariidae|Loxosceles troglobia|VU
+326||IT|Theraphosidae|Dolichothele diamantinensis|EN
+327||IT|Theraphosidae|Lasiocyano sazimai|VU
+328||IT|Theraphosidae|Tmesiphantes hypogeus|CR
+329||IT|Theraphosidae|Typhochlaena seladonia|EN
+330||IT|Theraphosidae|Ybyrapora diversipes|EN
+331||IT|Theraphosidae|Ybyrapora gamba|CR
+332||IT|Cryptogeobiidae|Spinopilar moria|CR
+333||IT|Escadabiidae|Spaeleoleptes spaeleus|VU
+334||IT|Gerdesiidae|Gonycranaus pluto|VU
+335||IT|Gonyleptidae|Discocyrtus pedrosoi|VU
+336||IT|Gonyleptidae|Eusarcus elinae|EN
+337||IT|Gonyleptidae|Iandumoema setimapocu|VU
+338||IT|Gonyleptidae|Iandumoema smeagol|EN
+339||IT|Gonyleptidae|Iandumoema uai|CR
+340||IT|Gonyleptidae|Pachylospeleus strinatii|CR
+341||IT|Kimulidae|Relictopiolus galadriel|CR
+342|*|IT|Eukoeneniidae|Allokoenenia canhembora|CR
+343||IT|Eukoeneniidae|Eukoenenia cavatica|EN
+344||IT|Eukoeneniidae|Eukoenenia jequitinhonha|CR
+345||IT|Eukoeneniidae|Eukoenenia maquinensis|VU
+346||IT|Eukoeneniidae|Eukoenenia navi|VU
+347||IT|Eukoeneniidae|Eukoenenia neytiri|EN
+348||IT|Eukoeneniidae|Eukoenenia potiguar|CR
+349||IT|Eukoeneniidae|Eukoenenia sagarana|CR
+350||IT|Eukoeneniidae|Eukoenenia spelunca|CR
+351||IT|Eukoeneniidae|Eukoenenia virgemdalapa|CR
+352||IT|Eukoeneniidae|Leptokoenenia pelada|CR
+353||IT|Eukoeneniidae|Leptokoenenia thalassophobica|EN
+354||IT|Bochicidae|Spelaeobochica allodentatus|EN
+355||IT|Bochicidae|Spelaeobochica muchmorei|CR
+356||IT|Chernetidae|Maxchernes iporangae|CR
+357||IT|Chernetidae|Spelaeochernes gracilipalpus|EN
+358||IT|Chthoniidae|Pseudochthonius biseriatus|EN
+359|*|IT|Chthoniidae|Pseudochthonius diamachi|VU
+360|*|IT|Chthoniidae|Pseudochthonius koinopoliteia|EN
+361|*|IT|Chthoniidae|Pseudochthonius limettioides|EN
+362||IT|Ideoroncidae|Ideoroncus cavicola|EN
+363||IT|Olpiidae|Progarypus nigrimanus|CR
+364|*|IT|Hubbardiidae|Rowlandius potiguar|EN
+365||IT|Hubbardiidae|Rowlandius ubajara|CR
+366|*|IT|Buthidae|Ischnotelson guanambiensis|CR
+367|*|IT|Buthidae|Tityus kuryi|EN
+368||IT|Buthidae|Troglorhopalurus translucidus|EN
+369||IT|Cryptopidae|Cryptops iporangensis|EN
+370||IT|Cryptopidae|Cryptops spelaeoraptor|CR
+371||IT|Scolopocryptopidae|Newportia potiguar|VU
+372||IT|Scolopocryptopidae|Newportia spelaea|CR
+373||IT|Scolopocryptopidae|Scolopocryptops troglocaudatus|EN
+374||IT|Glossoscolecidae|Fimoscolex sporadochaetus|EN
+375|*|IT|Glossoscolecidae|Glossoscolex lutocolus|VU
+376|*|IT|Glossoscolecidae|Glossoscolex matogrossensis|VU
+377|*|IT|Glossoscolecidae|Glossoscolex riograndensis|EN
+378|*|IT|Glossoscolecidae|Holoscolex dossantosi|EN
+379|*|IT|Ocnerodrilidae|Arraia nelmae|CR
+380||IT|Glomerodesmidae|Glomeridesmus spelaeus|EN
+381|*|IT|Chelodesmidae|Atlantodesmus pickeli|CR (PE)
+382|*|IT|Chelodesmidae|Cayenniola albaserrata|EN
+383||IT|Chelodesmidae|Leodesmus yporangae|EN
+384||IT|Chelodesmidae|Odontopeltis giganteus|VU
+385||IT|Dobrodesmidae|Dobrodesmus mirabilis|CR
+386|*|IT|Trichopolydesmidae|Phaneromerium troglopterygotum|VU
+387||IT|Pseudonannolenidae|Pseudonannolene lundi|CR
+388||IT|Pseudonannolenidae|Pseudonannolene spelaea|CR
+389||IT|Pseudonannolenidae|Pseudonannolene tocaiensis|VU
+390||IT|Entomobryidae|Pseudosinella ambigua|VU
+391||IT|Isotomidae|Archisotoma arariboia|CR
+392|*|IT|Neanuridae|Friesea noronhaensis|VU
+393||IT|Campodeidae|Oncinocampa trajanoae|CR
+394|*|IT|Entomobryidae|Pseudosinella alfanjeunguiculata|VU
+395|*|IT|Entomobryidae|Pseudosinella brumadinhoensis|VU
+396|*|IT|Entomobryidae|Pseudosinella cearensis|VU
+397||IT|Entomobryidae|Pseudosinella guanhaensis|CR
+398|*|IT|Entomobryidae|Pseudosinella neriae|EN
+399|*|IT|Entomobryidae|Pseudosinella paraensis|EN
+400|*|IT|Entomobryidae|Pseudosinella serpentinensis|VU
+401||IT|Entomobryidae|Seira arenicola|EN
+402||IT|Entomobryidae|Seira mataraquensis|EN
+403||IT|Isotomidae|Archisotoma catiae|EN
+404||IT|Isotomidae|Arlea arenicola|EN
+405||IT|Isotomidae|Arlea psammophila|EN
+406||IT|Isotomidae|Isotomiella uai|VU
+407||IT|Isotomidae|Isotomurus riparius|EN
+408||IT|Isotomidae|Paracerura gandarela|VU
+409||IT|Isotomidae|Psammisotoma restingae|EN
+410||IT|Paronellidae|Troglobius brasiliensis|VU
+411||IT|Paronellidae|Troglobius ferroicus|CR
+412||IT|Paronellidae|Trogolaphysa aelleni|CR
+413|*|IT|Paronellidae|Trogolaphysa barroca|VU
+414|*|IT|Paronellidae|Trogolaphysa chapelensis|VU
+415||IT|Brachystomellidae|Maricaella duna|EN
+416|*|IT|Isotogastruridae|Isotogastrura mucrospatulata|VU
+417||IT|Neanuridae|Arlesia intermedia|EN
+418||IT|Tullbergiidae|Mesaphorura maricaensis|EN
+419||IT|Arrhopalitidae|Arrhopalites alambariensis|VU
+420||IT|Arrhopalitidae|Arrhopalites amorimi|VU
+421||IT|Arrhopalitidae|Arrhopalites botuveraensis|VU
+422||IT|Arrhopalitidae|Arrhopalites glabrofasciatus|EN
+423||IT|Arrhopalitidae|Arrhopalites gnaspinii|CR
+424||IT|Arrhopalitidae|Arrhopalites heteroculatus|VU
+425||IT|Arrhopalitidae|Arrhopalites lawrencei|VU
+426||IT|Arrhopalitidae|Arrhopalites paranaensis|CR
+427|*|IT|Arrhopalitidae|Willemia zeppelinii|EN
+428||IT|Sminthuridae|Pararrhopalites papaveroi|EN
+429||IT|Sminthuridae|Pararrhopalites sideroicus|CR
+430||IT|Sminthuridae|Pararrhopalites ubiquum|VU
+431||IT|Sminthuridae|Pararrhopalites wallacei|CR
+432|*|IT|Sminthuridae|Troglobentosminthurus luridus|CR
+433||IT|Veronicellidae|Phyllocaulis renschi|EN
+434|*|IT|Bulimulidae|Anthinus henselii|EN
+435|*|IT|Bulimulidae|Biotocus turbinatus|EN
+436|*|IT|Bulimulidae|Eudolichotis lacerta|EN
+437||IT|Bulimulidae|Thaumastus lundi|EN
+438||IT|Odontostomidae|Odontostomus dautzenbergianus|VU
+439|*|IT|Planorbidae|Drepanotrema pileatum|EN
+440||IT|Planorbidae|Plesiophysa dolichomastix|EN
+441|*|IT|Scolodontidae|Ridleyconcha quinquelirata|EN
+442|*|IT|Simpulopsidae|Simpulopsis wiebesi|VU
+443|*|IT|Subulinidae|Synapterpes hanleyi|VU
+444||IT|Succineidae|Succinea lopesi|VU
+445|*|IT|Achatinidae|Lavajatus moroi|VU
+446|*|IT|Odontostomidae|Hyperaulax ramagei|CR
+447|*|IT|Odontostomidae|Hyperaulax ridleyi|VU
+448||IT|Odontostomidae|Tomigerus gibberulus|EN
+449||IT|Strophocheilidae|Gonyostomus insularis|VU
+450||IT|Strophocheilidae|Megalobulimus cardosoi|EN
+451|*|IT|Strophocheilidae|Megalobulimus fragilior|CR
+452|*|IT|Strophocheilidae|Megalobulimus lopesi|VU
+453|*|IT|Strophocheilidae|Megalobulimus parafragilior|CR
+454|*|IT|Strophocheilidae|Megalobulimus proclivis|EN
+455|*|IT|Strophocheilidae|Megalobulimus rolandianus|EN
+456|*|IT|Strophocheilidae|Mirinaba curytibana|EN
+457||IT|Blattellidae|Litoblatta camargoi|EN
+458|*|IT|Carabidae|Ardistomis ferreirai|CR
+459||IT|Carabidae|Coarazuphium amazonicus|CR
+460||IT|Carabidae|Coarazuphium caatinga|EN
+461||IT|Carabidae|Coarazuphium cessaima|EN
+462||IT|Carabidae|Coarazuphium formoso|CR
+463|*|IT|Carabidae|Coarazuphium kayapo|EN
+464|*|IT|Carabidae|Coarazuphium lundi|EN
+465||IT|Carabidae|Coarazuphium pains|VU
+466||IT|Carabidae|Coarazuphium ricardoi|CR
+467||IT|Carabidae|Coarazuphium spinifemur|CR
+468||IT|Carabidae|Coarazuphium tapiaguassu|EN
+469||IT|Carabidae|Coarazuphium tessai|CR
+470|*|IT|Carabidae|Coarazuphium xikrin|VU
+471|*|IT|Carabidae|Coarazuphium xingu|VU
+472|*|IT|Carabidae|Perigona spelunca|VU
+473||IT|Carabidae|Schizogenius ocellatus|EN
+474|*|IT|Carabidae|Whiteheadiana thaisae|CR
+475||IT|Lampyridae|Amydetes bellorum|EN
+476||IT|Lucanidae|Altitatiayus campoi|CR
+477||IT|Lucanidae|Altitatiayus dulceae|CR
+478||IT|Lucanidae|Altitatiayus godinhorum|CR
+479||IT|Lucanidae|Altitatiayus rotundatus|CR
+480||IT|Lycidae|Cartagonum apiuba|EN
+481|*|IT|Lycidae|Currhaeus polegattoi|EN
+482|*|IT|Lycidae|Falsocaenia santatereza|EN
+483||IT|Lycidae|Lycomorphon brasiliense|EN
+484||IT|Scarabaeidae|Canthon quadripunctatus|VU
+485||IT|Scarabaeidae|Dichotomius eucranioides|VU
+486||IT|Scarabaeidae|Dichotomius mysticus|EN
+487||IT|Scarabaeidae|Dichotomius schiffleri|VU
+488||IT|Staphylinidae|Metopiellus painensis|EN
+489|*|IT|Staphylinidae|Metopioxys carajas|CR
+490||IT|Cixiidae|Ferricixius davidi|CR
+491|*|IT|Cixiidae|Ferricixius goliathi|CR
+492|*|IT|Cixiidae|Ferricixius michaeli|CR
+493|*|IT|Hydrometridae|Cephalometra pallida|VU
+494||IT|Kinnaridae|Iuiuia caeca|EN
+495||IT|Kinnaridae|Kinnapotiguara troglobia|VU
+496|*|IT|Andrenidae|Arhysosage biguttulata|VU
+497||IT|Andrenidae|Arhysosage cactorum|VU
+498|*|IT|Andrenidae|Arhysosage flava|VU
+499|*|IT|Apidae|Bombus bahiensis|EN
+500|*|IT|Apidae|Bombus bellicosus|VU
+501|*|IT|Apidae|Centris hyptidoides|VU
+502|*|IT|Apidae|Centris thelyopsis|EN
+503|*|IT|Apidae|Eufriesea brasilianorum|VU
+504|*|IT|Apidae|Eufriesea pyrrhopyga|VU
+505|*|IT|Apidae|Euglossa avicula|VU
+506|*|IT|Apidae|Euglossa cyanochlora|VU
+507|*|IT|Apidae|Eulaema felipei|CR
+508||IT|Apidae|Melipona capixaba|EN
+509||IT|Apidae|Partamona littoralis|EN
+510|*|IT|Apidae|Schwarziana bocainensis|CR (PE)
+511|*|IT|Colletidae|Actenosigynes mantiqueirensis|CR
+512|*|IT|Colletidae|Albinapis gracilis|VU
+513|*|IT|Formicidae|Cephalotes liviaprado|VU
+514||IT|Formicidae|Monomorium delabiei|VU
+515||IT|Formicidae|Mycetagroicus urbanus|CR (PE)
+516||IT|Formicidae|Poneracantha wilsoni|CR
+517||IT|Formicidae|Rhopalothrix plaumanni|CR
+518||IT|Crambidae|Parapoynx restingalis|EN
+519|*|IT|Hesperiidae|Thespieus maacki|EN
+520||IT|Nymphalidae|Actinote zikani|CR
+521|*|IT|Nymphalidae|Aeria olena tiuma|VU
+522||IT|Nymphalidae|Forsterinaria itatiaia|VU
+523||IT|Nymphalidae|Morpho epistrophus nikolajewna|VU
+524||IT|Nymphalidae|Orobrassolis ornamentalis|CR
+525||IT|Nymphalidae|Pampasatyrus glaucope boenninghauseni|EN
+526||IT|Nymphalidae|Pampasatyrus glaucope eberti|CR
+527||IT|Nymphalidae|Pampasatyrus glaucope glaucope|VU
+528||IT|Nymphalidae|Pampasatyrus reticulata gagarini|EN
+529||IT|Nymphalidae|Praepedaliodes sequeirae|CR
+530||IT|Nymphalidae|Scada karschina delicata|VU
+531||IT|Papilionidae|Parides ascanius|VU
+532||IT|Papilionidae|Parides bunichus chamissonia|EN
+533||IT|Papilionidae|Parides panthonus castilhoi|VU
+534|*|IT|Riodinidae|Stichelia pelotensis|EN
+535||IT|Sphingidae|Nyceryx mielkei|VU
+536|*|IT|Sphingidae|Xylophanes mielkei|VU
+537||IT|Phalangopsidae|Endecous apterus|EN
+538||IT|Phalangopsidae|Endecous peruassuensis|EN
+539|*|IT|Phalangopsidae|Erebonyx catacumbae|CR
+540||IT|Nicoletiidae|Cubacubana spelaea|VU
+541|*|IT|Armadillidae|Gabunillo enfurnado|VU
+542|*|IT|Philosciidae|Benthana alba|VU
+543|*|IT|Philosciidae|Benthanoides amazonicus|VU
+544||IT|Pudeoniscidae|Iansaoniscus georginae|CR
+545||IT|Pudeoniscidae|Iansaoniscus iraquara|CR
+546|*|IT|Pudeoniscidae|Iansaoniscus leilae|VU
+547|*|IT|Pudeoniscidae|Iansaoniscus paulae|VU
+548||IT|Scleropactidae|Amazoniscus leistikowi|CR
+549||IT|Scleropactidae|Circoniscus buckupi|EN
+550|*|IT|Scleropactidae|Circoniscus mendesi|VU
+551|*|IT|Styloniscidae|Chaimowiczia obybytyra|CR
+552|*|IT|Styloniscidae|Cylindroniscus platoi|EN
+553||IT|Styloniscidae|Iuiuniscus iuiuensis|VU
+554|*|IT|Styloniscidae|Pectenoniscus monsviridis|VU
+555|*|IT|Styloniscidae|Pectenoniscus montalvaniensis|VU
+556|*|IT|Styloniscidae|Pectenoniscus pankaru|VU
+557|*|IT|Styloniscidae|Pectenoniscus sepultus|VU
+558||IT|Styloniscidae|Spelunconiscus castroi|EN
+559||IT|Styloniscidae|Xangoniscus aganju|EN
+560||IT|Styloniscidae|Xangoniscus itacarambiensis|CR
+561|*|IT|Peripatidae|Cerradopatus sucuriuensis|CR
+562||IT|Peripatidae|Epiperipatus adenocryptus|CR
+563||IT|Peripatidae|Epiperipatus diadenoproctus|VU
+564||IT|Peripatidae|Epiperipatus ohausi|EN
+565||IT|Peripatidae|Epiperipatus paurognostus|CR
+566||MA|Balaenidae|Eubalaena australis|VU
+567||MA|Balaenopteridae|Balaenoptera borealis|EN
+568||MA|Balaenopteridae|Balaenoptera musculus|CR
+569||MA|Balaenopteridae|Balaenoptera physalus|EN
+570||MA|Cervidae|Blastocerus dichotomus|VU
+571||MA|Cervidae|Mazama nana|VU
+572||MA|Cervidae|Ozotoceros bezoarticus bezoarticus|VU
+573|*|MA|Delphinidae|Sotalia fluviatilis|EN
+574||MA|Delphinidae|Sotalia guianensis|EN
+575||MA|Delphinidae|Tursiops gephyreus|CR
+576||MA|Iniidae|Inia araguaiaensis|VU
+577||MA|Iniidae|Inia geoffrensis|EN
+578||MA|Physeteridae|Physeter macrocephalus|VU
+579||MA|Pontoporiidae|Pontoporia blainvillei|CR
+580||MA|Tayassuidae|Tayassu pecari|VU
+581||MA|Canidae|Atelocynus microtis|VU
+582||MA|Canidae|Chrysocyon brachyurus|VU
+583||MA|Canidae|Speothos venaticus|VU
+584||MA|Felidae|Herpailurus yagouaroundi|VU
+585|*|MA|Felidae|Leopardus braccatus|EN
+586||MA|Felidae|Leopardus geoffroyi|VU
+587||MA|Felidae|Leopardus guttulus|EN
+588|*|MA|Felidae|Leopardus munoai|CR
+589||MA|Felidae|Leopardus tigrinus|EN
+590||MA|Felidae|Leopardus wiedii|VU
+591||MA|Felidae|Panthera onca|VU
+592||MA|Mustelidae|Pteronura brasiliensis|EN
+593|*|MA|Otariidae|Otaria flavescens|VU
+594||MA|Furipteridae|Furipterus horrens|VU
+595||MA|Natalidae|Natalus macrourus|VU
+596||MA|Phyllostomidae|Lonchophylla bokermanni|VU
+597||MA|Phyllostomidae|Lonchophylla dekeyseri|EN
+598||MA|Dasypodidae|Priodontes maximus|VU
+599||MA|Dasypodidae|Tolypeutes tricinctus|EN
+600|*|MA|Didelphidae|Monodelphis vossi|VU
+601||MA|Tapiridae|Tapirus terrestris|VU
+602||MA|Bradypodidae|Bradypus torquatus|VU
+603|*|MA|Cyclopedidae|Cyclopes rufus|VU
+604||MA|Myrmecophagidae|Myrmecophaga tridactyla|VU
+605||MA|Atelidae|Alouatta belzebul|VU
+606|*|MA|Atelidae|Alouatta caraya|VU
+607||MA|Atelidae|Alouatta discolor|VU
+608|*|MA|Atelidae|Alouatta guariba|EN
+609||MA|Atelidae|Alouatta ululata|EN
+610||MA|Atelidae|Ateles belzebuth|VU
+611||MA|Atelidae|Ateles chamek|EN
+612||MA|Atelidae|Ateles marginatus|EN
+613||MA|Atelidae|Brachyteles arachnoides|EN
+614||MA|Atelidae|Brachyteles hypoxanthus|CR
+615|*|MA|Atelidae|Lagothrix lagothricha|VU
+616||MA|Callitrichidae|Callithrix aurita|EN
+617||MA|Callitrichidae|Callithrix flaviceps|CR
+618||MA|Callitrichidae|Leontopithecus caissara|EN
+619||MA|Callitrichidae|Leontopithecus chrysomelas|VU
+620||MA|Callitrichidae|Leontopithecus chrysopygus|EN
+621||MA|Callitrichidae|Leontopithecus rosalia|EN
+622||MA|Callitrichidae|Saguinus bicolor|EN
+623||MA|Cebidae|Cebus kaapori|CR
+624||MA|Cebidae|Saimiri vanzolinii|EN
+625||MA|Cebidae|Sapajus cay|VU
+626||MA|Cebidae|Sapajus flavius|EN
+627|*|MA|Cebidae|Sapajus libidinosus|VU
+628||MA|Cebidae|Sapajus robustus|EN
+629||MA|Cebidae|Sapajus xanthosternos|EN
+630||MA|Pitheciidae|Callicebus barbarabrownae|EN
+631||MA|Pitheciidae|Callicebus coimbrai|EN
+632|*|MA|Pitheciidae|Callicebus nigrifrons|VU
+633||MA|Pitheciidae|Callicebus personatus|VU
+634||MA|Pitheciidae|Chiropotes satanas|EN
+635||MA|Pitheciidae|Chiropotes utahickae|VU
+636|*|MA|Pitheciidae|Plecturocebus bernhardi|VU
+637|*|MA|Pitheciidae|Plecturocebus brunneus|VU
+638|*|MA|Pitheciidae|Plecturocebus grovesi|EN
+639||MA|Caviidae|Cavia intermedia|CR
+640||MA|Caviidae|Kerodon acrobata|VU
+641||MA|Cricetidae|Cerradomys goytaca|EN
+642|*|MA|Cricetidae|Deltamys araucaria|EN
+643||MA|Cricetidae|Euryoryzomys lamia|EN
+644||MA|Cricetidae|Gyldenstolpia planaltensis|VU
+645|*|MA|Cricetidae|Hylaeamys oniscus|VU
+646||MA|Cricetidae|Juscelinomys candango|CR (PE)
+647||MA|Cricetidae|Microakodontomys transitorius|EN
+648|*|MA|Cricetidae|Oxymycterus caparaoe|VU
+649|*|MA|Cricetidae|Phaenomys ferrugineus|VU
+650||MA|Cricetidae|Rhipidomys cariri|VU
+651||MA|Cricetidae|Thalpomys lasiotis|EN
+652||MA|Ctenomyidae|Ctenomys bicolor|EN
+653||MA|Ctenomyidae|Ctenomys flamarioni|VU
+654|*|MA|Ctenomyidae|Ctenomys ibicuiensis|EN
+655||MA|Ctenomyidae|Ctenomys lami|EN
+656||MA|Ctenomyidae|Ctenomys minutus|VU
+657||MA|Echimyidae|Callistomys pictus|EN
+658||MA|Echimyidae|Phyllomys brasiliensis|EN
+659|*|MA|Echimyidae|Phyllomys centralis|VU
+660||MA|Echimyidae|Phyllomys unicolor|CR (PE)
+661||MA|Echimyidae|Trinomys eliasi|VU
+662|*|MA|Echimyidae|Trinomys minor|VU
+663||MA|Echimyidae|Trinomys moojeni|EN
+664||MA|Echimyidae|Trinomys yonenagae|EN
+665||MA|Erethizontidae|Coendou speratus|VU
+666||MA|Trichechidae|Trichechus inunguis|VU
+667||MA|Trichechidae|Trichechus manatus|CR
+668|*|RE|Alopoglossidae|Alopoglossus collii|VU
+669|*|RE|Amphisbaenidae|Amphisbaena acangaoba|EN
+670||RE|Amphisbaenidae|Amphisbaena arda|VU
+671|*|RE|Amphisbaenidae|Amphisbaena arenaria|EN
+672|*|RE|Amphisbaenidae|Amphisbaena bahiana|EN
+673|*|RE|Amphisbaenidae|Amphisbaena carli|VU
+674|*|RE|Amphisbaenidae|Amphisbaena carvalhoi|EN
+675|*|RE|Amphisbaenidae|Amphisbaena heathi|VU
+676|*|RE|Amphisbaenidae|Amphisbaena kiriri|EN
+677|*|RE|Amphisbaenidae|Amphisbaena leucocephala|VU
+678|*|RE|Amphisbaenidae|Amphisbaena littoralis|VU
+679|*|RE|Amphisbaenidae|Amphisbaena metallurga|EN
+680||RE|Amphisbaenidae|Amphisbaena nigricauda|VU
+681|*|RE|Amphisbaenidae|Amphisbaena persephone|VU
+682|*|RE|Amphisbaenidae|Amphisbaena ridleyi|EN
+683|*|RE|Amphisbaenidae|Amphisbaena sanctaeritae|EN
+684|*|RE|Amphisbaenidae|Amphisbaena saxosa|EN
+685||RE|Amphisbaenidae|Amphisbaena supernumeraria|EN
+686|*|RE|Amphisbaenidae|Amphisbaena tiaraju|VU
+687||RE|Amphisbaenidae|Amphisbaena uroxena|EN
+688||RE|Amphisbaenidae|Leposternon kisteumacheri|VU
+689|*|RE|Amphisbaenidae|Leposternon maximus|EN
+690|*|RE|Amphisbaenidae|Leposternon mineiro|VU
+691||RE|Amphisbaenidae|Leposternon octostegum|EN
+692||RE|Amphisbaenidae|Leposternon scutigerum|EN
+693||RE|Boidae|Corallus cropanii|EN
+694||RE|Dactyloidae|Dactyloa nasofrontalis|CR
+695||RE|Dactyloidae|Dactyloa pseudotigrina|CR
+696|*|RE|Diploglossidae|Ophiodes enso|EN
+697||RE|Dipsadidae|Apostolepis arenaria|EN
+698||RE|Dipsadidae|Apostolepis gaboi|VU
+699|*|RE|Dipsadidae|Apostolepis phillipsi|EN
+700||RE|Dipsadidae|Apostolepis quirogai|EN
+701||RE|Dipsadidae|Apostolepis striata|VU
+702|*|RE|Dipsadidae|Apostolepis thalesdelemai|VU
+703|*|RE|Dipsadidae|Apostolepis vittata|EN
+704||RE|Dipsadidae|Atractus caete|EN
+705||RE|Dipsadidae|Atractus ronnie|VU
+706||RE|Dipsadidae|Atractus thalesdelemai|EN
+707|*|RE|Dipsadidae|Caaeteboia gaeli|EN
+708||RE|Dipsadidae|Calamodontophis ronaldoi|EN
+709|*|RE|Dipsadidae|Chlorosoma laticeps|VU
+710||RE|Dipsadidae|Ditaxodon taeniatus|VU
+711||RE|Dipsadidae|Echinanthera cephalomaculata|EN
+712|*|RE|Dipsadidae|Helicops boitata|EN
+713|*|RE|Dipsadidae|Phalotris lativittatus|VU
+714||RE|Dipsadidae|Phalotris multipunctatus|CR
+715||RE|Dipsadidae|Philodryas livida|VU
+716||RE|Dipsadidae|Rodriguesophis chui|VU
+717||RE|Dipsadidae|Rodriguesophis scriptorcibatus|VU
+718|*|RE|Gymnophthalmidae|Acratosaura spinosa|EN
+719|*|RE|Gymnophthalmidae|Alexandresaurus camacan|VU
+720|*|RE|Gymnophthalmidae|Anotosaura collaris|EN
+721||RE|Gymnophthalmidae|Bachia didactyla|EN
+722||RE|Gymnophthalmidae|Bachia psamophila|VU
+723||RE|Gymnophthalmidae|Calyptommatus leiolepis|VU
+724||RE|Gymnophthalmidae|Calyptommatus nicterus|EN
+725||RE|Gymnophthalmidae|Calyptommatus sinebrachiatus|EN
+726|*|RE|Gymnophthalmidae|Caparaonia itaiquara|EN
+727||RE|Gymnophthalmidae|Colobodactylus dalcyanus|EN
+728||RE|Gymnophthalmidae|Heterodactylus lundii|VU
+729||RE|Gymnophthalmidae|Heterodactylus septentrionalis|EN
+730||RE|Gymnophthalmidae|Leposoma annectans|VU
+731||RE|Gymnophthalmidae|Leposoma baturitensis|VU
+732||RE|Gymnophthalmidae|Leposoma nanodactylus|EN
+733||RE|Gymnophthalmidae|Leposoma puk|VU
+734|*|RE|Gymnophthalmidae|Leposoma sinepollex|EN
+735|*|RE|Gymnophthalmidae|Marinussaurus curupira|VU
+736||RE|Gymnophthalmidae|Placosoma cipoense|EN
+737|*|RE|Gymnophthalmidae|Placosoma limaverdorum|EN
+738||RE|Gymnophthalmidae|Procellosaurinus tetradactylus|EN
+739|*|RE|Gymnophthalmidae|Psilops mucugensis|VU
+740|*|RE|Gymnophthalmidae|Psilops seductus|VU
+741|*|RE|Gymnophthalmidae|Scriptosaura catimbau|EN
+742|*|RE|Leiosauridae|Anisolepis undulatus|VU
+743|*|RE|Leiosauridae|Enyalius brasiliensis|VU
+744|*|RE|Leiosauridae|Enyalius capetinga|VU
+745||RE|Leiosauridae|Enyalius erythroceneus|EN
+746||RE|Liolaemidae|Liolaemus arambarensis|EN
+747||RE|Liolaemidae|Liolaemus lutzae|EN
+748||RE|Liolaemidae|Liolaemus occipitalis|VU
+749||RE|Mabuyidae|Brasiliscincus caissara|EN
+750|*|RE|Mabuyidae|Trachylepis atlantica|EN
+751|*|RE|Phyllodactylidae|Gymnodactylus vanzolinii|EN
+752||RE|Phyllodactylidae|Homonota uruguayensis|VU
+753|*|RE|Sphaerodactylidae|Coleodactylus elizae|CR
+754||RE|Sphaerodactylidae|Coleodactylus natalensis|EN
+755|*|RE|Teiidae|Ameiva jacuba|VU
+756||RE|Teiidae|Ameiva parecis|EN
+757|*|RE|Teiidae|Ameivula cipoensis|EN
+758||RE|Teiidae|Contomastix vacariensis|EN
+759||RE|Teiidae|Glaucomastix abaetensis|EN
+760|*|RE|Teiidae|Glaucomastix cyanura|VU
+761|*|RE|Teiidae|Glaucomastix itabaianensis|EN
+762||RE|Teiidae|Glaucomastix littoralis|EN
+763|*|RE|Teiidae|Kentropyx viridistriga|VU
+764||RE|Tropiduridae|Eurolophosaurus amathites|VU
+765|*|RE|Tropiduridae|Eurolophosaurus divaricatus|VU
+766||RE|Tropiduridae|Stenocercus azureus|EN
+767|*|RE|Tropiduridae|Stenocercus quinarius|VU
+768|*|RE|Tropiduridae|Tropidurus callathelys|EN
+769|*|RE|Tropiduridae|Tropidurus chromatops|EN
+770||RE|Tropiduridae|Tropidurus erythrocephalus|EN
+771||RE|Tropiduridae|Tropidurus hygomi|VU
+772|*|RE|Tropiduridae|Tropidurus mucujensis|EN
+773||RE|Viperidae|Bothrops alcatraz|VU
+774|*|RE|Viperidae|Bothrops germanoi|VU
+775||RE|Viperidae|Bothrops insularis|CR
+776|*|RE|Viperidae|Bothrops itapetiningae|VU
+777|*|RE|Viperidae|Bothrops jabrensis|CR
+778||RE|Viperidae|Bothrops muriciensis|CR
+779||RE|Viperidae|Bothrops otavioi|CR
+780|*|RE|Viperidae|Bothrops sazimai|CR
+781|*|RE|Chelidae|Acanthochelys macrocephala|VU
+782|*|RE|Chelidae|Phrynops williamsi|VU
+783||RE|Chelidae|Ranacephala hogei|EN
+784||RE|Cheloniidae|Caretta caretta|VU
+785||RE|Cheloniidae|Eretmochelys imbricata|EN
+786||RE|Cheloniidae|Lepidochelys olivacea|VU
+787||RE|Dermochelyidae|Dermochelys coriacea|CR
+788|*|RE|Podocnemididae|Podocnemis sextuberculata|EN
+789|*|RE|Testudinidae|Chelonoidis carbonarius|VU
+790|*|RE|Testudinidae|Chelonoidis denticulatus|EN
+E1||AN|Hylidae|Boana cymbalum|EX
+E2||AN|Phyllomedusidae|Phrynomedusa fimbriata|EX
+E3||AV|Scolopacidae|Numenius borealis|RE
+E4||AV|Furnariidae|Cichlocolaptes mazarbarnetti|EX
+E5||AV|Furnariidae|Philydor novaesi|EX
+E6||AV|Icteridae|Leistes defilippii|RE
+E7||AV|Psittacidae|Anodorhynchus glaucus|RE
+E8||AV|Strigidae|Glaucidium mooreorum|EX
+E9||MA|Cricetidae|Noronhomys vespuccii|EX
