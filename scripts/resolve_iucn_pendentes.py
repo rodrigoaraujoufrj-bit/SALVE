@@ -16,6 +16,19 @@ import sys, os, time, re, shutil, threading, traceback
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import pandas as pd
 
+# REQUESTS_CA_BUNDLE apontando para arquivo que nao existe derruba o requests antes
+# de qualquer conexao, com "Could not find a suitable TLS CA certificate bundle".
+# Acontece quando o instalador do proxy corporativo grava o certificado numa pasta
+# temporaria que o Windows depois limpa, deixando a variavel orfa. Nesse caso a
+# variavel e ignorada e a validacao passa a ser feita pelo truststore, que usa o
+# repositorio de certificados do Windows. A verificacao TLS continua ativa.
+_ca_orfas = []
+for _var in ("REQUESTS_CA_BUNDLE", "CURL_CA_BUNDLE", "SSL_CERT_FILE"):
+    _p = os.environ.get(_var)
+    if _p and not os.path.exists(_p):
+        _ca_orfas.append((_var, _p))
+        del os.environ[_var]
+
 TRUSTSTORE = "nao carregado"
 try:                       # rede corporativa com proxy (Netskope)
     import truststore
@@ -111,6 +124,10 @@ def consultar(nome):
 
 # ------------------------------------------------------------------ 1. carrega
 print(f"truststore: {TRUSTSTORE}")
+for _var, _p in _ca_orfas:
+    print(f"aviso: {_var} apontava para arquivo inexistente e foi ignorada")
+    print(f"       {_p}")
+    print("       a validacao TLS passa a usar o repositorio de certificados do Windows")
 if not os.path.exists(CACHE):
     print(f"\nERRO: nao encontrei {CACHE}")
     sys.exit(1)
