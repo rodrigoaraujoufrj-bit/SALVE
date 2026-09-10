@@ -14,6 +14,8 @@ import pandas as pd
 ENTRADA = sys.argv[1] if len(sys.argv) > 1 else "saida/status_comparado.csv"
 SAIDA = sys.argv[2] if len(sys.argv) > 2 else "docs/index.html"
 LIMITE_MB = 15.0
+# exportacao do SALVE que originou os dados, mostrada no cabecalho da pagina
+EXPORT_SALVE = "10/09/2026"
 
 # colunas que se repetem muito: viram dicionario (indice inteiro por linha)
 CATEGORICAS = ["grupo", "classe", "ordem", "familia", "endemica_brasil", "status_salve",
@@ -213,7 +215,7 @@ footer{margin:14px 0 6px;font-size:11.5px;color:var(--tinta2);text-align:center;
   <h1>SALVE Fauna: consulta comparada</h1>
   <p class="sub">__N_ESPECIES__ espécies avaliadas, com o status no SALVE, nas Portarias de 2026 e na Lista Vermelha global da IUCN.</p>
   <div class="fontes">
-    <span><b>SALVE / ICMBio</b> exportação de 09/09/2026</span>
+    <span><b>SALVE / ICMBio</b> exportação de __EXPORT_SALVE__</span>
     <span><b>Portaria GM/MMA 1.667/2026</b> DOU 28/04/2026</span>
     <span><b>Portaria MMA 1.704/2026</b> DOU 17/06/2026</span>
     <span><b>IUCN Red List</b> via API do GBIF</span>
@@ -257,8 +259,8 @@ footer{margin:14px 0 6px;font-size:11.5px;color:var(--tinta2);text-align:center;
 <div class="paginas" id="paginas"></div>
 
 <footer>
-  Consolidado a partir das exportações públicas por bioma do SALVE / ICMBio.<br>
-  Espécies sem bioma atribuído no SALVE não saem nas exportações por bioma e não constam nesta tabela.
+  Consolidado a partir da exportação pública única das fichas do SALVE / ICMBio, reino Animalia.<br>
+  Inclui as espécies sem bioma atribuído, que ficavam de fora quando a fonte era a exportação separada por bioma.
 </footer>
 
 </div>
@@ -629,6 +631,7 @@ aplicar();
 html = (TEMPLATE
         .replace("__PAYLOAD__", dados_json)
         .replace("__DATA_GERACAO__", hoje)
+        .replace("__EXPORT_SALVE__", EXPORT_SALVE)
         .replace("__N_ESPECIES__", f"{len(df):,}".replace(",", ".")))
 
 os.makedirs(os.path.dirname(SAIDA) or ".", exist_ok=True)

@@ -43,12 +43,42 @@ def get(url, params=None, tentativas=4):
             r = SESSION.get(url, params=params, timeout=30)
             if r.status_code == 200:
                 return r.json()
-            if r.status_code == 404:
-                return None
-        except requests.RequestException:
+            if r.status_code in (204, 404):
+                return None      # sem conteudo: o taxon nao tem o dado pedido
+        except Exception:        # nao so RequestException: erro de SSL ou proxy tambem
             pass
         time.sleep(1.5 * (i + 1))
     return None
+
+
+def resolver_backbone(chave):
+    """
+    Leva uma chave de catalogo ate a chave do backbone (nubKey), unica que o
+    endpoint iucnRedListCategory entende. Devolve (chave_backbone, nome_aceito).
+
+    O nubKey nao vem no resultado de /species/search: so aparece no detalhe do
+    taxon. E quando o registro e sinonimo, quem o carrega e o taxon aceito.
+    Ex.: Pauxi mitu (sinonimo, sem nub) -> Mitu mitu -> nubKey 2482280.
+    """
+    t = get(f"{GBIF}/species/{chave}")
+    if not t:
+        return None, ""
+    if t.get("nubKey"):
+        return t["nubKey"], t.get("canonicalName", "")
+    ak = t.get("acceptedKey")
+    if not ak:
+        return None, ""
+    a = get(f"{GBIF}/species/{ak}")
+    if not a:
+        return None, ""
+    if a.get("nubKey"):
+        return a["nubKey"], a.get("canonicalName", "")
+    nome_ac = a.get("canonicalName") or ""
+    if nome_ac:
+        mm = get(f"{GBIF}/species/match", {"name": nome_ac, "kingdom": "Animalia"})
+        if mm and mm.get("matchType") not in (None, "NONE", "HIGHERRANK"):
+            return (mm.get("acceptedUsageKey") or mm.get("usageKey")), mm.get("canonicalName", nome_ac)
+    return None, ""
 
 
 def consultar(nome):
@@ -62,14 +92,23 @@ def consultar(nome):
     if not m or m.get("matchType") in (None, "NONE"):
         out["gbif_match"] = "sem match"; return out
     if m.get("matchType") == "HIGHERRANK":
-        # só achou o gênero: tenta a busca textual, que enxerga sinônimos sob outro gênero (ex.: Pauxi mitu -> Mitu mitu)
+        # o nome nao esta no backbone (foi isso que fez o match parar no genero).
+        # A busca sem filtro alcanca os catalogos auxiliares; de la, resolver_backbone
+        # segue ate o nubKey, que e a chave aceita pelo endpoint da IUCN. Usar a
+        # chave do catalogo direto faz a categoria voltar sempre NE, silenciosamente.
         sr = get(f"{GBIF}/species/search", {"q": nome, "rank": "SPECIES", "limit": 20})
-        cand = [r for r in (sr or {}).get("results", []) if r.get("canonicalName", "").lower() == nome.lower()]
-        if not cand:
+        cand = [r for r in (sr or {}).get("results", [])
+                if (r.get("canonicalName") or "").lower() == nome.lower() and r.get("key")]
+        cand.sort(key=lambda r: 0 if r.get("acceptedKey") else 1)   # sinonimos primeiro
+        chave, aceito = None, ""
+        for r in cand[:4]:
+            chave, aceito = resolver_backbone(r["key"])
+            if chave:
+                break
+        if not chave:
             out["gbif_match"] = "sem match (só gênero)"; return out
-        c = cand[0]
-        m = {"matchType": "SEARCH", "confidence": 90, "usageKey": c.get("key"),
-             "acceptedUsageKey": c.get("acceptedKey"), "canonicalName": c.get("canonicalName", "")}
+        m = {"matchType": "SEARCH", "confidence": 90, "usageKey": chave,
+             "acceptedUsageKey": None, "canonicalName": aceito}
     out["gbif_match"] = m.get("matchType", "")
     out["gbif_confianca"] = m.get("confidence", "")
     if m.get("matchType") == "FUZZY" and m.get("confidence", 0) < 90:
@@ -118,6 +157,10 @@ print("IUCN global:", cache["iucn_codigo"].value_counts().to_dict())
 
 # ------------------------------------------------------------ 2. anexar ao consolidado
 lk = cache.set_index("nome_cientifico")
+# reexecucao: o CSV ja pode trazer as colunas finais, e o rename abaixo as duplicaria
+df = df.drop(columns=[c for c in df.columns if "iucn_global" in c or c in
+                      ("categoria_iucn_global", "iucn_codigo", "gbif_nome_aceito", "gbif_match")],
+             errors="ignore")
 for c in ["categoria_iucn_global", "iucn_codigo", "gbif_nome_aceito", "gbif_match"]:
     df[c] = df["nome_cientifico"].map(lk[c]).fillna("")
 df = df.rename(columns={"iucn_codigo": "categoria_iucn_global_sigla", "gbif_nome_aceito": "iucn_global_nome_aceito",

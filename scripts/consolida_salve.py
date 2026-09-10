@@ -75,6 +75,7 @@ print(f"total bruto: {len(bruto)}")
 
 # ---------------------------------------------------------------- dedup
 chave = ["especie", "subespecie"]
+bruto["subespecie"] = bruto["subespecie"].str.strip()
 cols_conteudo = [c for c in bruto.columns if c not in chave + ["arquivo_origem"]]
 divergentes = bruto.groupby(chave)[cols_conteudo].nunique().gt(1).any(axis=1).sum()
 print(f"espécies com ficha divergente entre biomas: {divergentes}")
@@ -84,7 +85,13 @@ print(f"após dedup: {len(df)} fichas únicas")
 # ---------------------------------------------------------------- normalização
 df.insert(0, "id_ficha", range(1, len(df) + 1))
 # subespecie já traz o trinômio completo no SALVE
-df.insert(1, "nome_cientifico", df["subespecie"].where(df["subespecie"] != "", df["especie"]))
+# subespecie pode vir só com o epíteto ("morio") ou com o trinômio inteiro ("Actinote morio morio"), conforme a exportação
+def nome_completo(r):
+    sub, esp = r["subespecie"].strip(), r["especie"].strip()
+    if not sub: return esp
+    return sub if sub.lower().startswith(esp.lower()) else f"{esp} {sub}"
+df.insert(1, "nome_cientifico", df.apply(nome_completo, axis=1))
+df["subespecie"] = df.apply(lambda r: r["nome_cientifico"][len(r["especie"].strip()):].strip() if r["subespecie"].strip() else "", axis=1)
 
 # campos separados por vírgula
 for c in ["estado", "bioma", "unidade_de_conservacao_federal", "rppn",
