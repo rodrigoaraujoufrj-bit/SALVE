@@ -95,11 +95,10 @@ def consultar(nome):
         out["gbif_match"] = "sem match"; return out
     if m.get("matchType") == "HIGHERRANK":
         # so achou o genero: a busca textual enxerga sinonimo sob outro genero
-        # restrito ao backbone: iucnRedListCategory so entende chave do backbone.
-        # Sem esse filtro, a busca devolve chave de catalogo regional e a categoria
-        # nunca e encontrada, fazendo tudo cair em NE.
-        sr, err = get(f"{GBIF}/species/search",
-                      {"q": nome, "rank": "SPECIES", "limit": 20, "datasetKey": BACKBONE})
+        # sem filtro de catalogo: o nome nao esta no backbone (foi isso que fez o
+        # match devolver HIGHERRANK), entao a busca precisa alcancar os demais
+        # catalogos. A chave do backbone vem depois, pelo nubKey do resultado.
+        sr, err = get(f"{GBIF}/species/search", {"q": nome, "rank": "SPECIES", "limit": 20})
         if err:
             out["gbif_match"] = "erro"; out["erro"] = err; return out
         cand = [r for r in (sr or {}).get("results", []) if r.get("canonicalName", "").lower() == nome.lower()]
