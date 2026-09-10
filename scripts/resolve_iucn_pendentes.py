@@ -45,8 +45,6 @@ ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
 TESTE = "--teste" in sys.argv
 CACHE = ARGS[0] if ARGS else "iucn_global.csv"
 GBIF = "https://api.gbif.org/v1"
-# Taxonomia de Referencia do GBIF (GBIF Backbone Taxonomy)
-BACKBONE = "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"
 THREADS = 8
 PENDENTES = ["HIGHERRANK", "sem match", "sem match (só gênero)", "erro", ""]
 COLUNAS = ["nome_cientifico", "gbif_key", "gbif_nome_aceito", "gbif_match",
@@ -83,6 +81,37 @@ def get(url, params=None, tentativas=4):
     return None, ultimo
 
 
+def resolver_backbone(chave):
+    """
+    Leva uma chave de catalogo ate a chave do backbone (nubKey), que e a unica que
+    o endpoint iucnRedListCategory entende. Devolve (chave_backbone, nome_aceito).
+
+    O nubKey nao vem no resultado de /species/search: so aparece no detalhe do taxon.
+    E quando o registro e sinonimo, quem carrega o nubKey e o taxon aceito, nao ele.
+    Ex.: Pauxi mitu (sinonimo, sem nub) -> Mitu mitu -> nubKey 2482280.
+    """
+    t, _ = get(f"{GBIF}/species/{chave}")
+    if not t:
+        return None, ""
+    if t.get("nubKey"):
+        return t["nubKey"], t.get("canonicalName", "")
+    ak = t.get("acceptedKey")
+    if not ak:
+        return None, ""
+    a, _ = get(f"{GBIF}/species/{ak}")
+    if not a:
+        return None, ""
+    if a.get("nubKey"):
+        return a["nubKey"], a.get("canonicalName", "")
+    # o aceito tambem nao tem nub: tenta casar o nome dele direto no backbone
+    nome_ac = a.get("canonicalName") or ""
+    if nome_ac:
+        mm, _ = get(f"{GBIF}/species/match", {"name": nome_ac, "kingdom": "Animalia"})
+        if mm and mm.get("matchType") not in (None, "NONE", "HIGHERRANK"):
+            return (mm.get("acceptedUsageKey") or mm.get("usageKey")), mm.get("canonicalName", nome_ac)
+    return None, ""
+
+
 def consultar(nome):
     out = dict.fromkeys(COLUNAS, "")
     out["nome_cientifico"] = nome
@@ -94,21 +123,25 @@ def consultar(nome):
     if not m or m.get("matchType") in (None, "NONE"):
         out["gbif_match"] = "sem match"; return out
     if m.get("matchType") == "HIGHERRANK":
-        # so achou o genero: a busca textual enxerga sinonimo sob outro genero
-        # sem filtro de catalogo: o nome nao esta no backbone (foi isso que fez o
-        # match devolver HIGHERRANK), entao a busca precisa alcancar os demais
-        # catalogos. A chave do backbone vem depois, pelo nubKey do resultado.
+        # o nome nao esta no backbone (foi isso que fez o match parar no genero).
+        # A busca sem filtro alcanca os demais catalogos; de la, resolver_backbone
+        # segue ate o nubKey, que e a chave aceita pelo endpoint da IUCN.
         sr, err = get(f"{GBIF}/species/search", {"q": nome, "rank": "SPECIES", "limit": 20})
         if err:
             out["gbif_match"] = "erro"; out["erro"] = err; return out
-        cand = [r for r in (sr or {}).get("results", []) if r.get("canonicalName", "").lower() == nome.lower()]
-        if not cand:
+        cand = [r for r in (sr or {}).get("results", [])
+                if (r.get("canonicalName") or "").lower() == nome.lower() and r.get("key")]
+        # sinonimos primeiro: sao os que apontam para o nome aceito atual
+        cand.sort(key=lambda r: 0 if r.get("acceptedKey") else 1)
+        chave, aceito = None, ""
+        for r in cand[:4]:
+            chave, aceito = resolver_backbone(r["key"])
+            if chave:
+                break
+        if not chave:
             out["gbif_match"] = "sem match (só gênero)"; return out
-        c = cand[0]
-        m = {"matchType": "SEARCH", "confidence": 90,
-             "usageKey": c.get("nubKey") or c.get("key"),
-             "acceptedUsageKey": c.get("acceptedNubKey") or c.get("acceptedKey"),
-             "canonicalName": c.get("canonicalName", "")}
+        m = {"matchType": "SEARCH", "confidence": 90, "usageKey": chave,
+             "acceptedUsageKey": None, "canonicalName": aceito}
     out["gbif_match"] = m.get("matchType", "")
     out["gbif_confianca"] = m.get("confidence", "")
     if m.get("matchType") == "FUZZY" and m.get("confidence", 0) < 90:
@@ -175,10 +208,10 @@ print(f"  ok ({teste.get('canonicalName','?')} respondeu)")
 # ------------------------------------------------------------------ 2b. modo teste
 if TESTE:
     CONTROLE = [
-        ("Pauxi mitu", "sinonimo de Mitu mitu, mutum-de-alagoas, EW na Lista Vermelha"),
-        ("Amadonastur lacernulatus", "gaviao-pombo-pequeno, VU no SALVE"),
+        ("Pauxi mitu", "deve resolver para Mitu mitu (nubKey 2482280) com categoria real"),
+        ("Amadonastur lacernulatus", "deve resolver para Buteogallus lacernulatus (nubKey 7537530)"),
         ("Dendrocincla taunayi", "arapacu, EN no SALVE"),
-        ("Crypturellus zabele", "zabele, VU no SALVE"),
+        ("Crypturellus zabele", "sem caminho para o backbone: deve seguir sem categoria"),
     ]
     print("\n" + "=" * 62)
     print("MODO TESTE: nada sera gravado")
@@ -193,7 +226,7 @@ if TESTE:
         if r["erro"]:
             print(f"  erro     : {r['erro']}")
     print("\n" + "=" * 62)
-    print("Se 'Pauxi mitu' aparecer como Mitu mitu com IUCN EW, a correcao funcionou.")
+    print("Se 'Pauxi mitu' resolver para Mitu mitu com categoria diferente de NE, funcionou.")
     print("Rode entao sem --teste para processar as 568.")
     sys.exit(0)
 
