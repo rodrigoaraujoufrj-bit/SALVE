@@ -66,6 +66,16 @@ git commit -m "Atualiza pagina de consulta"
 git push
 ```
 
+A página traz uma seção **Metodologia** recolhível, com o texto que explica ao leitor como as
+três fontes foram cruzadas. Dois campos dela ficam no topo do `gera_html.py` e são editados à mão:
+
+| constante | o que é |
+|---|---|
+| `DATA_ATUALIZACAO` | data mostrada em "Dados atualizados em". Não é automática, de propósito: ela marca a data do dado, não a da geração do arquivo. Atualize a cada publicação. |
+| `URL_README` | link para este README, mostrado ao fim da seção |
+
+O "Página gerada em" do cabeçalho continua automático e independe desses campos.
+
 O Pages republica sozinho a cada push na `main`, em cerca de um minuto. A pasta `docs/` é
 versionada de propósito e não entra no `.gitignore`.
 

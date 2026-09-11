@@ -113,6 +113,25 @@ tbody tr.sel td{background:var(--acento-claro)}
   font-size:11.5px;font-weight:700;color:var(--acento);text-transform:uppercase;letter-spacing:.6px}
 .selo{display:inline-block;padding:2px 9px;border-radius:11px;font-weight:700;font-size:13px}
 
+.metodo{background:var(--papel);border:1px solid var(--linha);border-radius:8px;margin-top:12px}
+.metodo>summary{padding:12px 16px;cursor:pointer;font-weight:600;font-size:14px;
+  list-style:none;display:flex;align-items:center;gap:9px;user-select:none}
+.metodo>summary::-webkit-details-marker{display:none}
+.metodo>summary::before{content:"\25B8";color:var(--acento);font-size:13px;
+  display:inline-block;transition:transform .15s}
+.metodo[open]>summary::before{transform:rotate(90deg)}
+.metodo>summary:hover{color:var(--acento)}
+.metodo>summary:focus-visible{outline:2px solid var(--acento);outline-offset:-2px;border-radius:8px}
+.metodo .texto{padding:2px 16px 16px;max-width:76ch;font-size:13.5px;line-height:1.65}
+.metodo h3{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--acento);
+  margin:18px 0 6px;font-weight:700}
+.metodo p{margin:0 0 10px}
+.metodo ol{margin:0 0 10px;padding-left:20px}
+.metodo li{margin-bottom:7px;padding-left:3px}
+.metodo .cien{font-style:italic;white-space:normal}
+.metodo .fonte-met{margin:16px 0 0;padding-top:12px;border-top:1px solid var(--linha);
+  font-size:12.5px;color:var(--tinta2)}
+.metodo a{color:var(--acento)}
 footer{margin:14px 0 6px;font-size:11.5px;color:var(--tinta2);text-align:center;line-height:1.7}
 
 @media (max-width:820px){
@@ -172,6 +191,30 @@ footer{margin:14px 0 6px;font-size:11.5px;color:var(--tinta2);text-align:center;
 </div>
 
 <div class="paginas" id="paginas"></div>
+
+<details class="metodo">
+  <summary>Metodologia: como os dados foram cruzados</summary>
+  <div class="texto">
+    <p>Esta consulta reúne três fontes: as fichas do SALVE (avaliação nacional do ICMBio), as Portarias MMA 1.667/2026 e 1.704/2026 (lista oficial de espécies ameaçadas) e a Lista Vermelha da IUCN (avaliação global). Cobre apenas o reino Animalia; a flora ameaçada segue outra lista, mantida pelo CNCFlora/JBRJ.</p>
+
+    <h3>O problema de juntar as três fontes</h3>
+    <p>O SALVE e a IUCN às vezes usam nomes científicos diferentes para a mesma espécie, porque a taxonomia é revisada com frequência e as duas bases nem sempre atualizam no mesmo ritmo: uma pode já ter adotado um gênero novo enquanto a outra ainda usa o antigo, ou uma trata como espécie o que a outra ainda trata como subespécie.</p>
+
+    <h3>O caminho usado</h3>
+    <p>Para resolver isso, o cruzamento passa pelo GBIF (Global Biodiversity Information Facility), uma referência internacional que mantém o histórico de sinônimos e integra dados de várias bases, incluindo a própria IUCN. O processo segue quatro etapas, em ordem:</p>
+    <ol>
+      <li>Tenta bater o nome científico exato entre SALVE e GBIF.</li>
+      <li>Se o nome do SALVE é reconhecido como um sinônimo antigo, o sistema segue automaticamente para o nome atualizado e busca a categoria da IUCN nesse nome, registrando qual foi o nome usado, para permitir conferência depois.</li>
+      <li>Se apenas o gênero é reconhecido, o sistema faz uma segunda busca para tentar localizar o nome sob um gênero diferente, situação comum quando um grupo inteiro passou por revisão taxonômica recente. Foi assim, por exemplo, que se recuperou a categoria do mutum-de-alagoas, que no SALVE está registrado como <span class="cien">Pauxi mitu</span> e na base internacional aparece sob o nome <span class="cien">Mitu mitu</span>.</li>
+      <li>Correspondências aproximadas só são aceitas quando a similaridade do nome é muito alta, para evitar juntar espécies parecidas mas diferentes.</li>
+    </ol>
+
+    <h3>O que fica sem correspondência, de propósito</h3>
+    <p>Quando uma espécie avaliada pelo SALVE ainda é tratada pela IUCN como parte de outra espécie (ou o contrário), não existe uma categoria global equivalente de fato. Nesses casos o sistema não aproxima, o campo fica indicado como "sem categoria global". A alternativa seria herdar a categoria da espécie mais próxima, mas isso atribuiria a um animal uma avaliação que ninguém fez para ele especificamente, então essa aproximação foi descartada por princípio.</p>
+
+    <p class="fonte-met">Dados atualizados em 11/09/2026. Detalhamento técnico, código e fontes no <a href="https://github.com/rodrigoaraujoufrj-bit/SALVE/blob/main/README.md" target="_blank" rel="noopener">README do repositório</a>.</p>
+  </div>
+</details>
 
 <footer>
   Consolidado a partir da exportação pública única das fichas do SALVE / ICMBio, reino Animalia.<br>
