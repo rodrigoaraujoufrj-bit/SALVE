@@ -121,6 +121,19 @@ print(f"payload JSON: {len(dados_json.encode('utf8'))/1e6:.2f} MB")
 
 hoje = datetime.date.today().strftime("%d/%m/%Y")
 
+# Os dois blocos abaixo so entram na pagina quando ha fotos, para nao explicar
+# ao leitor um recurso que ele nao esta vendo.
+BLOCO_FOTOS = """
+    <h3>As fotografias</h3>
+    <p>As fotos vêm do iNaturalist, uma rede onde naturalistas e pesquisadores publicam registros de observação. Nem toda espécie tem foto aqui, por dois motivos que se somam.</p>
+    <p>O primeiro é de cobertura: aves e mamíferos são muito fotografados, enquanto boa parte dos invertebrados e dos peixes continentais não tem nenhum registro fotográfico público. O segundo é de licença: só entram fotos publicadas sob licença Creative Commons que permita uso sem restrição comercial. A imagem que o iNaturalist exibe por padrão costuma ser de direitos reservados, e nesses casos o sistema procura outra do mesmo táxon; quando não encontra, a espécie fica sem imagem.</p>
+    <p>A ausência de foto, portanto, não diz nada sobre a espécie. Não significa que ela seja rara nem que a ficha esteja incompleta: significa apenas que ninguém publicou uma fotografia dela sob licença compatível.</p>
+
+    <h3>Limites de uso das imagens</h3>
+    <p>Cada fotografia é obra de terceiro, publicada sob licença Creative Commons, e traz abaixo dela o nome do autor e a licença. As imagens não pertencem a esta consulta e não podem ser reaproveitadas livremente a partir daqui: quem quiser usar uma delas em outro material precisa seguir os termos da licença indicada e creditar o autor.</p>
+    <p>A foto é ilustrativa e não serve como determinação taxonômica. Muitas espécies próximas são indistinguíveis em fotografia, e a identificação depende de exame por especialista.</p>
+"""
+
 # ------------------------------------------------------------------ template
 TEMPLATE = r"""<!doctype html>
 <html lang="pt-BR">
@@ -344,6 +357,7 @@ footer{margin:14px 0 6px;font-size:11.5px;color:var(--tinta2);text-align:center;
     <h3>O que fica sem correspondência, de propósito</h3>
     <p>Quando uma espécie avaliada pelo SALVE ainda é tratada pela IUCN como parte de outra espécie (ou o contrário), não existe uma categoria global equivalente de fato. Nesses casos o sistema não aproxima, o campo fica indicado como "sem categoria global". A alternativa seria herdar a categoria da espécie mais próxima, mas isso atribuiria a um animal uma avaliação que ninguém fez para ele especificamente, então essa aproximação foi descartada por princípio.</p>
 
+__BLOCO_FOTOS__
     <p class="fonte-met">Dados atualizados em __DATA_ATUALIZACAO__. Detalhamento técnico, código e fontes no <a href="__URL_README__" target="_blank" rel="noopener">README do repositório</a>.</p>
   </div>
 </details>
@@ -754,6 +768,7 @@ html = (TEMPLATE
         .replace("__EXPORT_SALVE__", EXPORT_SALVE)
         .replace("__DATA_ATUALIZACAO__", DATA_ATUALIZACAO)
         .replace("__URL_README__", URL_README)
+        .replace("__BLOCO_FOTOS__", BLOCO_FOTOS if fotos else "")
         .replace("__N_ESPECIES__", f"{len(df):,}".replace(",", ".")))
 
 os.makedirs(os.path.dirname(SAIDA) or ".", exist_ok=True)

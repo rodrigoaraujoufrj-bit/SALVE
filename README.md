@@ -95,6 +95,12 @@ ritmo, por isso o padrão é consultar apenas o subconjunto relevante, cerca de 
 Use `--todas` para as 15 mil, ciente de que passa da cota diária e leva uma 4 horas, retomando
 de onde parou a cada execução.
 
+A seção Metodologia da página ganha dois blocos quando há fotos, "As fotografias" e "Limites de
+uso das imagens", explicando ao leitor por que parte das espécies não tem imagem e que as fotos
+são obra de terceiros sob licença Creative Commons, não reaproveitáveis livremente a partir dali.
+Os blocos são condicionais: sem `fotos_inat.csv` eles não entram, para a página não explicar um
+recurso que não está lá.
+
 A página traz uma seção **Metodologia** recolhível, com o texto que explica ao leitor como as
 três fontes foram cruzadas. Dois campos dela ficam no topo do `gera_html.py` e são editados à mão:
 
