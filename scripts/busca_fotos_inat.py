@@ -46,9 +46,14 @@ INAT = "https://api.inaturalist.org/v1"
 THREADS = 4
 POR_MINUTO = 60          # limite pedido pelo iNaturalist
 
-# ordem de preferencia: mais permissiva primeiro. Licenca nula (todos os
-# direitos reservados) fica de fora, nao pode ser exibida.
-LICENCAS = ["cc0", "cc-by", "cc-by-sa", "cc-by-nc", "cc-by-nc-sa", "cc-by-nd", "cc-by-nc-nd"]
+# Ordem de preferencia. Licenca nula (todos os direitos reservados) fica de fora:
+# nao pode ser exibida. As NC (nao comercial) vem por ultimo de proposito, entao a
+# foto registrada e sempre a melhor sob a politica mais restritiva quando existe uma.
+# Elas sao registradas mesmo assim, para que mudar a politica depois nao exija
+# reconsultar: quem decide se entram na pagina e a constante LICENCAS_ACEITAS do
+# gera_html.py.
+LICENCAS = ["cc0", "cc-by", "cc-by-sa", "cc-by-nd",
+            "cc-by-nc", "cc-by-nc-sa", "cc-by-nc-nd"]
 PESO = {l: i for i, l in enumerate(LICENCAS)}
 COLUNAS = ["nome_cientifico", "taxon_id", "foto_id", "host", "licenca", "autor", "erro"]
 

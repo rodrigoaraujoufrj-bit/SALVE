@@ -83,6 +83,13 @@ que a API devolve costuma ser "todos os direitos reservados" (`license_code` nul
 ser exibida em página institucional; nesses casos o script procura outra foto do mesmo táxon com
 licença livre. O crédito ao autor e a licença aparecem sob cada imagem, como a licença exige.
 
+**As licenças NC (não comercial) ficam de fora.** A página representa a companhia, e "não
+comercial" é terreno ambíguo nesse caso. A separação de responsabilidades é proposital: o
+`busca_fotos_inat.py` registra as NC no CSV, e quem decide se elas entram na página é a constante
+`LICENCAS_ACEITAS` do `gera_html.py`. Mudar a política é acrescentar o código de licença ali e
+regerar, sem reconsultar a API. Por isso a coleta ordena as não NC primeiro: a foto registrada
+é sempre a melhor sob a política mais restritiva, quando existe uma.
+
 O iNaturalist pede no máximo 60 requisições por minuto e 10 mil por dia. O script respeita esse
 ritmo, por isso o padrão é consultar apenas o subconjunto relevante, cerca de 1,8 mil espécies.
 Use `--todas` para as 15 mil, ciente de que passa da cota diária e leva uma 4 horas, retomando

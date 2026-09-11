@@ -23,6 +23,11 @@ EXPORT_SALVE = "10/09/2026"
 # Nao e gerado automaticamente: o "Pagina gerada em" do cabecalho ja cobre isso.
 DATA_ATUALIZACAO = "11/09/2026"
 URL_README = "https://github.com/rodrigoaraujoufrj-bit/SALVE/blob/main/README.md"
+# Licencas aceitas na pagina. As NC (nao comercial) ficam de fora por decisao:
+# a pagina representa a companhia, e "nao comercial" e terreno ambiguo nesse caso.
+# O fotos_inat.csv registra as NC mesmo assim, entao reverter e so acrescentar os
+# codigos aqui e regerar, sem reconsultar a API.
+LICENCAS_ACEITAS = {"cc0", "cc-by", "cc-by-sa", "cc-by-nd"}
 
 # colunas que se repetem muito: viram dicionario (indice inteiro por linha)
 CATEGORICAS = ["grupo", "classe", "ordem", "familia", "endemica_brasil", "status_salve",
@@ -94,6 +99,11 @@ if os.path.exists(FOTOS):
     f = pd.read_csv(FOTOS, dtype=str, keep_default_na=False)
     f.columns = [c.lstrip("\ufeff") for c in f.columns]
     f = f[f.foto_id != ""].drop_duplicates("nome_cientifico")
+    antes = len(f)
+    f = f[f.licenca.isin(LICENCAS_ACEITAS)]
+    if antes - len(f):
+        print(f"fotos: {antes - len(f)} descartadas por licenca nao aceita "
+              f"(aceitas: {', '.join(sorted(LICENCAS_ACEITAS))})")
     lk = f.set_index("nome_cientifico")
     for i, nome in enumerate(df.nome_cientifico):
         if nome in lk.index:
