@@ -41,8 +41,12 @@ python scripts/iucn_global_gbif.py saida/salve_fauna_consolidado.csv saida/salve
 # 5. tabela final: uma linha por espécie com status SALVE, Portaria 2026 e IUCN global
 python scripts/status_comparado.py saida/salve_fauna_consolidado.csv saida/salve_fauna.xlsx saida/iucn_global.csv
 
-# 6. página de consulta autocontida publicada no GitHub Pages
-python scripts/gera_html.py saida/status_comparado.csv docs/index.html
+# 6. fotos das espécies no iNaturalist (opcional, ~29 min, retomável)
+#    só as espécies que importam: ameaçadas, listadas nas portarias, ou ameaçadas na IUCN
+python scripts/busca_fotos_inat.py saida/status_comparado.csv saida/fotos_inat.csv
+
+# 7. página de consulta publicada no GitHub Pages
+python scripts/gera_html.py saida/status_comparado.csv docs/index.html saida/fotos_inat.csv
 ```
 
 Rodar sempre a partir da raiz do repositório.
@@ -52,10 +56,14 @@ Rodar sempre a partir da raiz do repositório.
 O site de consulta é servido pelo GitHub Pages a partir da pasta `docs/` da branch `main`,
 no endereço `https://rodrigoaraujoufrj-bit.github.io/SALVE/`.
 
-`docs/index.html` é um arquivo único e autocontido: HTML, CSS, JavaScript e os dados de
+`docs/index.html` é um arquivo único: HTML, CSS, JavaScript e os dados de
 `saida/status_comparado.csv` embutidos como JSON no momento da geração. Não carrega nada de
-CDN nem faz requisição de rede, então funciona também aberto direto do disco (`file://`),
-o que atende quem está atrás do proxy corporativo.
+CDN, então funciona também aberto direto do disco (`file://`), o que atende quem está atrás
+do proxy corporativo.
+
+A única requisição de rede que a página faz é a fotografia da espécie, e só quando o usuário
+abre o painel de uma espécie que tenha foto. Se o proxy bloquear o servidor de imagens, o
+bloco da foto simplesmente não aparece e todo o resto continua funcionando.
 
 Para atualizar o site depois de uma nova rodada do pipeline:
 
@@ -65,6 +73,20 @@ git add docs/index.html
 git commit -m "Atualiza pagina de consulta"
 git push
 ```
+
+### Fotografias
+
+O passo 6 é opcional: sem `saida/fotos_inat.csv` a página sai sem imagens e nada mais muda.
+
+As fotos vêm do iNaturalist e **só entram se tiverem licença Creative Commons**. A foto padrão
+que a API devolve costuma ser "todos os direitos reservados" (`license_code` nulo), que não pode
+ser exibida em página institucional; nesses casos o script procura outra foto do mesmo táxon com
+licença livre. O crédito ao autor e a licença aparecem sob cada imagem, como a licença exige.
+
+O iNaturalist pede no máximo 60 requisições por minuto e 10 mil por dia. O script respeita esse
+ritmo, por isso o padrão é consultar apenas o subconjunto relevante, cerca de 1,8 mil espécies.
+Use `--todas` para as 15 mil, ciente de que passa da cota diária e leva uma 4 horas, retomando
+de onde parou a cada execução.
 
 A página traz uma seção **Metodologia** recolhível, com o texto que explica ao leitor como as
 três fontes foram cruzadas. Dois campos dela ficam no topo do `gera_html.py` e são editados à mão:

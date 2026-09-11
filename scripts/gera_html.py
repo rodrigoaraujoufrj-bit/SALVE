@@ -13,6 +13,9 @@ import pandas as pd
 
 ENTRADA = sys.argv[1] if len(sys.argv) > 1 else "saida/status_comparado.csv"
 SAIDA = sys.argv[2] if len(sys.argv) > 2 else "docs/index.html"
+# opcional: fotos do iNaturalist, geradas por scripts/busca_fotos_inat.py.
+# Se o arquivo nao existir, a pagina sai sem fotos e nada mais muda.
+FOTOS = sys.argv[3] if len(sys.argv) > 3 else "saida/fotos_inat.csv"
 LIMITE_MB = 15.0
 # exportacao do SALVE que originou os dados, mostrada no cabecalho da pagina
 EXPORT_SALVE = "10/09/2026"
@@ -80,7 +83,29 @@ for t in df.itertuples(index=False):
             linha.append(v)
     linhas.append(linha)
 
+# ------------------------------------------------------------------ fotos (opcional)
+# vetor paralelo a linhas: [id_da_foto, servidor, licenca, autor] ou 0 quando nao ha.
+# Licenca nula (todos os direitos reservados) nunca chega aqui: o busca_fotos_inat.py
+# so grava foto com licenca Creative Commons.
+# esparso: so as linhas que tem foto, indexadas pela posicao. Guardar zero para
+# as 15 mil sem foto custaria 40 KB a toa, e a maioria nao tem.
+fotos = {}
+if os.path.exists(FOTOS):
+    f = pd.read_csv(FOTOS, dtype=str, keep_default_na=False)
+    f.columns = [c.lstrip("\ufeff") for c in f.columns]
+    f = f[f.foto_id != ""].drop_duplicates("nome_cientifico")
+    lk = f.set_index("nome_cientifico")
+    for i, nome in enumerate(df.nome_cientifico):
+        if nome in lk.index:
+            r = lk.loc[nome]
+            fotos[i] = [int(r.foto_id), "s" if r.host == "s3" else "t", r.licenca, r.autor]
+    print(f"fotos: {len(fotos)} de {len(df)} especies com imagem de licenca livre")
+else:
+    print(f"fotos: {FOTOS} nao encontrado, pagina sai sem imagens")
+
 payload = {"cols": COLS, "cats": cats, "rows": linhas}
+if fotos:
+    payload["fotos"] = fotos
 dados_json = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
 print(f"payload JSON: {len(dados_json.encode('utf8'))/1e6:.2f} MB")
 
@@ -202,6 +227,14 @@ tbody tr.sel td{background:var(--acento-claro)}
   font-size:11.5px;font-weight:700;color:var(--acento);text-transform:uppercase;letter-spacing:.6px}
 .selo{display:inline-block;padding:2px 9px;border-radius:11px;font-weight:700;font-size:13px}
 
+.foto{margin:15px 0 2px;display:block}
+.foto[hidden]{display:none}
+.foto img{width:100%;height:auto;max-height:250px;object-fit:cover;display:block;
+  border-radius:6px;border:1px solid var(--linha);background:#eef1f5}
+.foto a{display:block;line-height:0}
+.foto figcaption{margin-top:6px;font-size:11px;color:var(--tinta2);line-height:1.45;
+  display:flex;flex-wrap:wrap;gap:4px}
+.foto figcaption b{font-weight:600;color:var(--tinta)}
 .metodo{background:var(--papel);border:1px solid var(--linha);border-radius:8px;margin-top:12px}
 .metodo>summary{padding:12px 16px;cursor:pointer;font-weight:600;font-size:14px;
   list-style:none;display:flex;align-items:center;gap:9px;user-select:none}
@@ -321,7 +354,13 @@ footer{margin:14px 0 6px;font-size:11.5px;color:var(--tinta2);text-align:center;
     </div>
     <button class="fechar" id="g-fechar" type="button" aria-label="Fechar">&times;</button>
   </div>
-  <div class="corpo"><dl id="g-corpo"></dl></div>
+  <div class="corpo">
+    <figure class="foto" id="g-foto" hidden>
+      <a id="g-foto-link" target="_blank" rel="noopener"><img id="g-foto-img" alt=""></a>
+      <figcaption id="g-foto-cred"></figcaption>
+    </figure>
+    <dl id="g-corpo"></dl>
+  </div>
 </aside>
 
 <script>
@@ -332,13 +371,14 @@ var P = __PAYLOAD__;
 var COLS = P.cols, CATS = P.cats;
 
 // ---------------------------------------------------------------- decodifica
-var ROWS = P.rows.map(function(r){
+var ROWS = P.rows.map(function(r, idx){
   var o = {}, i, c;
   for (i = 0; i < COLS.length; i++){
     c = COLS[i];
     o[c] = CATS[c] ? CATS[c][r[i]] : r[i];
   }
   if (o.iucn_global_nome_aceito === "=") o.iucn_global_nome_aceito = o.nome_cientifico;
+  o._f = (P.fotos && P.fotos[idx]) || 0;
   return o;
 });
 
@@ -562,12 +602,35 @@ var BLOCOS = [
   ["Referência", ["id_ficha"]]
 ];
 
+var SERVIDOR = {s: "https://inaturalist-open-data.s3.amazonaws.com/photos/",
+                t: "https://static.inaturalist.org/photos/"};
+var LICENCA = {"cc0":"CC0", "cc-by":"CC BY", "cc-by-sa":"CC BY-SA", "cc-by-nc":"CC BY-NC",
+               "cc-by-nc-sa":"CC BY-NC-SA", "cc-by-nd":"CC BY-ND", "cc-by-nc-nd":"CC BY-NC-ND"};
+
+function mostrarFoto(o){
+  var fig = document.getElementById("g-foto");
+  var img = document.getElementById("g-foto-img");
+  fig.hidden = true;                      // so aparece se a imagem carregar de fato
+  img.removeAttribute("src");
+  var f = o._f;
+  if (!f || !f[0]) return;
+  img.onload = function(){ fig.hidden = false; };
+  img.onerror = function(){ fig.hidden = true; };   // rede bloqueada: some, sem icone quebrado
+  img.alt = "Fotografia de " + o.nome_cientifico;
+  document.getElementById("g-foto-link").href = "https://www.inaturalist.org/photos/" + f[0];
+  document.getElementById("g-foto-cred").innerHTML =
+    "<span>&copy; <b>" + esc(f[3] || "autor não identificado") + "</b></span>" +
+    "<span>" + esc(LICENCA[f[2]] || f[2]) + "</span><span>via iNaturalist</span>";
+  img.src = (SERVIDOR[f[1]] || SERVIDOR.t) + f[0] + "/medium.jpg";
+}
+
 function abrir(id){
   var o = null;
   for (var i = 0; i < ROWS.length; i++){ if (ROWS[i].id_ficha === id){ o = ROWS[i]; break; } }
   if (!o) return;
   document.getElementById("g-nome").textContent = o.nome_cientifico;
   document.getElementById("g-pop").textContent = o.nome_comum || "sem nome comum registrado";
+  mostrarFoto(o);
 
   var h = [];
   BLOCOS.forEach(function(b){
