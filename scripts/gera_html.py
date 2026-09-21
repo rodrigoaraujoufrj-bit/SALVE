@@ -135,6 +135,11 @@ hoje = datetime.date.today().strftime("%d/%m/%Y")
 
 # Os dois blocos abaixo so entram na pagina quando ha fotos, para nao explicar
 # ao leitor um recurso que ele nao esta vendo.
+LEGENDA_CAMERA = ('<span><svg class="cam" viewBox="0 0 24 24" fill="currentColor" '
+                  'style="opacity:.55;margin:0"><path d="M9 3 7.2 5H4a2 2 0 0 0-2 2v11a2 2 0 0 0 '
+                  '2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.2L15 3H9zm3 5.5a5 5 0 1 1 0 10 5 5 0 0 '
+                  '1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg> tem fotografia</span>')
+
 BLOCO_FOTOS = """
     <h3>As fotografias</h3>
     <p>As fotos vêm do iNaturalist, uma rede onde naturalistas e pesquisadores publicam registros de observação. O painel de cada espécie pode trazer uma destas três situações.</p>
@@ -227,6 +232,8 @@ tbody tr{cursor:pointer}
 tbody tr:hover td{background:#f0f4fa}
 tbody tr.sel td{background:var(--acento-claro)}
 .cien{font-style:italic;white-space:nowrap}
+.cam{width:12px;height:12px;vertical-align:-1px;margin-left:6px;opacity:.55;flex:none}
+tbody tr:hover .cam{opacity:1;color:var(--acento)}
 .st{text-align:center;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
 .st.amarelo{background:var(--amarelo)}
 .st.laranja{background:var(--laranja)}
@@ -344,6 +351,7 @@ footer{margin:14px 0 6px;font-size:11.5px;color:var(--tinta2);text-align:center;
     <span><i class="amostra" style="background:var(--vermelho)"></i> ameaçada no SALVE e fora das portarias</span>
     <span><i class="amostra" style="background:var(--azul)"></i> categoria nacional diferente da global</span>
     <span><i class="amostra" style="background:var(--cinza)"></i> sem categoria global na IUCN</span>
+    __LEGENDA_CAMERA__
   </div>
 </div>
 
@@ -535,6 +543,12 @@ var COLUNAS = [
   {campo:"status_portaria_2026", titulo:"Portaria 2026", st:corPortaria},
   {campo:"status_iucn_global", titulo:"IUCN global", st:corIucn}
 ];
+// marca as especies cuja fotografia e exibida no painel. As que so tem link nao
+// recebem marca: seriam 10 mil de 15 mil linhas, e a marca deixaria de informar.
+var CAMERA = '<svg class="cam" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+  '<path d="M9 3 7.2 5H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.2L15 3H9z' +
+  'm3 5.5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>';
+
 var POR_PAGINA = 100;
 var ordemCampo = "nome_cientifico", ordemAsc = true, pagina = 1;
 var visiveis = ROWS;
@@ -605,7 +619,11 @@ function desenhar(){
       if (c.st){ classe = "st " + c.st(o); }
       if (c.esconde) classe += " esconde";
       var texto = (v === "" || v == null) ? "" : v;
-      return '<td class="' + classe.trim() + '">' + esc(texto) + "</td>";
+      var conteudo = esc(texto);
+      if (c.campo === "nome_cientifico" && o._f && o._f[0]){
+        conteudo += '<span title="tem fotografia">' + CAMERA + "</span>";
+      }
+      return '<td class="' + classe.trim() + '">' + conteudo + "</td>";
     }).join("");
     return '<tr data-id="' + o.id_ficha + '">' + tds + "</tr>";
   }).join("");
@@ -816,6 +834,7 @@ html = (TEMPLATE
         .replace("__DATA_ATUALIZACAO__", DATA_ATUALIZACAO)
         .replace("__URL_README__", URL_README)
         .replace("__BLOCO_FOTOS__", BLOCO_FOTOS if fotos else "")
+        .replace("__LEGENDA_CAMERA__", LEGENDA_CAMERA if fotos else "")
         .replace("__N_ESPECIES__", f"{len(df):,}".replace(",", ".")))
 
 os.makedirs(os.path.dirname(SAIDA) or ".", exist_ok=True)
