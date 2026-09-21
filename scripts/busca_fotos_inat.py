@@ -82,6 +82,25 @@ class Limite:
 limite = Limite(POR_MINUTO)
 _local = threading.local()
 
+# Disjuntor de cota. A cota diaria do iNaturalist e de 10 mil requisicoes; com
+# --todas a rodada passa disso. Quando a cota acaba a API responde 429 sem parar,
+# e insistir so queima tempo. Depois de COTA_LIMITE respostas 429 seguidas o
+# script para de consultar, deixa as threads drenarem e encerra gravando o que ja
+# tem. Como e retomavel, basta rodar de novo no dia seguinte.
+COTA_LIMITE = 25
+_cota = {"seguidas": 0, "estourou": False}
+_cota_lock = threading.Lock()
+
+
+def marca_429(foi_429):
+    with _cota_lock:
+        if foi_429:
+            _cota["seguidas"] += 1
+            if _cota["seguidas"] >= COTA_LIMITE:
+                _cota["estourou"] = True
+        else:
+            _cota["seguidas"] = 0
+
 
 def sessao():
     if not hasattr(_local, "s"):
@@ -91,16 +110,21 @@ def sessao():
 
 
 def get(url, params=None, tentativas=3):
+    if _cota["estourou"]:
+        return None, "cota diaria esgotada"
     ultimo = ""
     for i in range(tentativas):
         limite.espera()
         try:
             r = sessao().get(url, params=params, timeout=30)
             if r.status_code == 200:
-                return r.json(), ""
+                marca_429(False); return r.json(), ""
             if r.status_code in (204, 404):
-                return None, ""
-            if r.status_code == 429:            # excedeu a cota: espera mais
+                marca_429(False); return None, ""
+            if r.status_code == 429:
+                marca_429(True)
+                if _cota["estourou"]:
+                    return None, "cota diaria esgotada"
                 ultimo = "HTTP 429 (limite de requisicoes)"
                 time.sleep(20 * (i + 1)); continue
             ultimo = f"HTTP {r.status_code}"
@@ -216,7 +240,8 @@ with ThreadPoolExecutor(THREADS) as ex:
             novos.append(d)
         if i % 100 == 0 or i == len(pend):
             falta = (len(pend) - i) / POR_MINUTO
-            print(f"  {i}/{len(pend)}  {time.time()-t0:.0f}s  (faltam ~{falta:.0f} min)")
+            aviso = "  COTA ESGOTADA, encerrando" if _cota["estourou"] else f"  (faltam ~{falta:.0f} min)"
+            print(f"  {i}/{len(pend)}  {time.time()-t0:.0f}s{aviso}")
             # grava parcial: a rodada e longa, nao pode perder o que ja veio
             pd.concat([pd.DataFrame(list(feito.values())) if feito else pd.DataFrame(columns=COLUNAS),
                        pd.DataFrame(novos, columns=COLUNAS)], ignore_index=True) \
@@ -233,5 +258,9 @@ if len(com):
 print(f"  sem taxon no iNaturalist ou so com foto restrita: {len(n) - len(com) - (n.erro != '').sum()}")
 if (n.erro != "").sum():
     print(f"  com erro de rede: {(n.erro != '').sum()}")
+if _cota["estourou"]:
+    print("\nA cota diaria do iNaturalist (10 mil requisicoes) se esgotou.")
+    print("O que veio ate aqui esta gravado. Rode de novo amanha: o script retoma")
+    print("de onde parou e so consulta o que falta.")
 print(f"\ngravado {SAIDA}")
 print("Mande esse arquivo de volta no chat.")

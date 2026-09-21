@@ -83,12 +83,25 @@ que a API devolve costuma ser "todos os direitos reservados" (`license_code` nul
 ser exibida em página institucional; nesses casos o script procura outra foto do mesmo táxon com
 licença livre. O crédito ao autor e a licença aparecem sob cada imagem, como a licença exige.
 
-**As licenças NC (não comercial) ficam de fora.** A página representa a companhia, e "não
-comercial" é terreno ambíguo nesse caso. A separação de responsabilidades é proposital: o
-`busca_fotos_inat.py` registra as NC no CSV, e quem decide se elas entram na página é a constante
-`LICENCAS_ACEITAS` do `gera_html.py`. Mudar a política é acrescentar o código de licença ali e
-regerar, sem reconsultar a API. Por isso a coleta ordena as não NC primeiro: a foto registrada
-é sempre a melhor sob a política mais restritiva, quando existe uma.
+**As licenças NC (não comercial) não são exibidas, mas viram link.** A página representa a
+companhia, e "não comercial" é terreno ambíguo nesse caso. Em vez de escolher entre exibir tudo
+e não exibir nada, o painel tem três estados:
+
+| situação | o que aparece |
+|---|---|
+| licença livre (`cc0`, `cc-by`, `cc-by-sa`, `cc-by-nd`) | a imagem, com autor e licença |
+| licença NC, ou sem foto mas com táxon no iNaturalist | link "Ver fotografias no iNaturalist" |
+| sem táxon no iNaturalist | nada |
+
+O link não reproduz a obra: a foto continua sendo exibida na plataforma do próprio autor, sob os
+termos dele. Isso leva a cobertura entre as espécies ameaçadas de 11% (só imagem livre) para 80%
+(imagem ou link), sem exposição de licença.
+
+A separação de responsabilidades é proposital: o `busca_fotos_inat.py` registra todas as licenças
+no CSV, e quem decide quais são exibidas é a constante `LICENCAS_ACEITAS` do `gera_html.py`. Mudar
+a política é acrescentar o código de licença ali e regerar, sem reconsultar a API. Por isso a
+coleta ordena as não NC primeiro: a foto registrada é sempre a melhor sob a política mais
+restritiva, quando existe uma.
 
 O iNaturalist pede no máximo 60 requisições por minuto e 10 mil por dia. O script respeita esse
 ritmo, por isso o padrão é consultar apenas o subconjunto relevante, cerca de 1,8 mil espécies.
