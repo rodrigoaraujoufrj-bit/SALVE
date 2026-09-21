@@ -92,24 +92,32 @@ for t in df.itertuples(index=False):
 # vetor paralelo a linhas: [id_da_foto, servidor, licenca, autor] ou 0 quando nao ha.
 # Licenca nula (todos os direitos reservados) nunca chega aqui: o busca_fotos_inat.py
 # so grava foto com licenca Creative Commons.
-# esparso: so as linhas que tem foto, indexadas pela posicao. Guardar zero para
-# as 15 mil sem foto custaria 40 KB a toa, e a maioria nao tem.
+# Esparso: so as linhas que tem algo, indexadas pela posicao.
+#   [id_foto, id_taxon, servidor, licenca, autor]  exibe a imagem
+#   [0, id_taxon]                                  so link para o iNaturalist
+# A imagem so e exibida sob licenca aceita. Para as demais fica o link, que nao
+# reproduz a obra e por isso nao esbarra na restricao de uso da licenca: quem
+# exibe a foto e a plataforma do proprio autor.
 fotos = {}
 if os.path.exists(FOTOS):
     f = pd.read_csv(FOTOS, dtype=str, keep_default_na=False)
     f.columns = [c.lstrip("\ufeff") for c in f.columns]
-    f = f[f.foto_id != ""].drop_duplicates("nome_cientifico")
-    antes = len(f)
-    f = f[f.licenca.isin(LICENCAS_ACEITAS)]
-    if antes - len(f):
-        print(f"fotos: {antes - len(f)} descartadas por licenca nao aceita "
-              f"(aceitas: {', '.join(sorted(LICENCAS_ACEITAS))})")
-    lk = f.set_index("nome_cientifico")
+    f = f.drop_duplicates("nome_cientifico").set_index("nome_cientifico")
+    n_img = n_link = 0
     for i, nome in enumerate(df.nome_cientifico):
-        if nome in lk.index:
-            r = lk.loc[nome]
-            fotos[i] = [int(r.foto_id), "s" if r.host == "s3" else "t", r.licenca, r.autor]
-    print(f"fotos: {len(fotos)} de {len(df)} especies com imagem de licenca livre")
+        if nome not in f.index:
+            continue
+        r = f.loc[nome]
+        if r.foto_id and r.licenca in LICENCAS_ACEITAS:
+            fotos[i] = [int(r.foto_id), int(r.taxon_id) if r.taxon_id else 0,
+                        "s" if r.host == "s3" else "t", r.licenca, r.autor]
+            n_img += 1
+        elif r.taxon_id:
+            fotos[i] = [0, int(r.taxon_id)]
+            n_link += 1
+    print(f"fotos: {n_img} com imagem exibida (licencas {', '.join(sorted(LICENCAS_ACEITAS))})")
+    print(f"       {n_link} so com link para o iNaturalist")
+    print(f"       {len(df) - n_img - n_link} sem imagem nem link")
 else:
     print(f"fotos: {FOTOS} nao encontrado, pagina sai sem imagens")
 
@@ -125,13 +133,15 @@ hoje = datetime.date.today().strftime("%d/%m/%Y")
 # ao leitor um recurso que ele nao esta vendo.
 BLOCO_FOTOS = """
     <h3>As fotografias</h3>
-    <p>As fotos vêm do iNaturalist, uma rede onde naturalistas e pesquisadores publicam registros de observação. Nem toda espécie tem foto aqui, por dois motivos que se somam.</p>
-    <p>O primeiro é de cobertura: aves e mamíferos são muito fotografados, enquanto boa parte dos invertebrados e dos peixes continentais não tem nenhum registro fotográfico público. O segundo é de licença: só entram fotos publicadas sob licença Creative Commons que permita uso sem restrição comercial. A imagem que o iNaturalist exibe por padrão costuma ser de direitos reservados, e nesses casos o sistema procura outra do mesmo táxon; quando não encontra, a espécie fica sem imagem.</p>
-    <p>A ausência de foto, portanto, não diz nada sobre a espécie. Não significa que ela seja rara nem que a ficha esteja incompleta: significa apenas que ninguém publicou uma fotografia dela sob licença compatível.</p>
+    <p>As fotos vêm do iNaturalist, uma rede onde naturalistas e pesquisadores publicam registros de observação. O painel de cada espécie pode trazer uma destas três situações.</p>
+    <p><b>A fotografia exibida aqui.</b> Só aparece quando o autor publicou sob licença Creative Commons que permite reprodução sem restrição de uso comercial. Abaixo dela vêm o nome do autor e a licença.</p>
+    <p><b>Um link para o iNaturalist.</b> A maior parte das fotos está sob licença que restringe uso comercial, e reproduzi-las nesta página seria uso indevido. Nesses casos fica o link: a imagem continua sendo exibida na plataforma do próprio autor, sob os termos dele, e o link apenas leva até lá.</p>
+    <p><b>Nada.</b> Quando a espécie não tem registro no iNaturalist. É comum em invertebrados e peixes de riacho, grupos com pouca observação publicada.</p>
+    <p>A ausência de imagem, portanto, não diz nada sobre a espécie. Não significa que ela seja rara nem que a ficha esteja incompleta: significa apenas que ninguém publicou uma fotografia dela, ou que a licença não permite reproduzi-la aqui.</p>
 
     <h3>Limites de uso das imagens</h3>
-    <p>Cada fotografia é obra de terceiro, publicada sob licença Creative Commons, e traz abaixo dela o nome do autor e a licença. As imagens não pertencem a esta consulta e não podem ser reaproveitadas livremente a partir daqui: quem quiser usar uma delas em outro material precisa seguir os termos da licença indicada e creditar o autor.</p>
-    <p>A foto é ilustrativa e não serve como determinação taxonômica. Muitas espécies próximas são indistinguíveis em fotografia, e a identificação depende de exame por especialista.</p>
+    <p>Cada fotografia é obra de terceiro e não pertence a esta consulta. As que aparecem aqui trazem o nome do autor e a licença, e não podem ser reaproveitadas livremente a partir desta página: quem quiser usar uma delas em outro material precisa seguir os termos da licença indicada e creditar o autor. As que estão apenas linkadas seguem as regras do autor na plataforma de origem.</p>
+    <p>A foto é ilustrativa e não serve como determinação taxonômica. Muitas espécies próximas são indistinguíveis em fotografia, e as imagens do iNaturalist são enviadas por usuários, podendo conter identificações equivocadas. Para confirmar uma identificação em campo, consulte um especialista.</p>
 """
 
 # ------------------------------------------------------------------ template
@@ -257,6 +267,12 @@ tbody tr.sel td{background:var(--acento-claro)}
 .foto a{display:block;line-height:0}
 .foto figcaption{margin-top:6px;font-size:11px;color:var(--tinta2);line-height:1.45;
   display:flex;flex-wrap:wrap;gap:4px}
+.fotolink{margin:15px 0 2px;display:block;padding:10px 12px;border:1px solid var(--linha);
+  border-radius:6px;background:var(--acento-claro);color:var(--acento);font-size:13px;
+  font-weight:600;text-decoration:none}
+.fotolink[hidden]{display:none}
+.fotolink:hover{border-color:var(--acento)}
+.fotolink span{display:block;font-weight:400;font-size:11.5px;color:var(--tinta2);margin-top:2px}
 .foto figcaption b{font-weight:600;color:var(--tinta)}
 .metodo{background:var(--papel);border:1px solid var(--linha);border-radius:8px;margin-top:12px}
 .metodo>summary{padding:12px 16px;cursor:pointer;font-weight:600;font-size:14px;
@@ -383,6 +399,8 @@ __BLOCO_FOTOS__
       <a id="g-foto-link" target="_blank" rel="noopener"><img id="g-foto-img" alt=""></a>
       <figcaption id="g-foto-cred"></figcaption>
     </figure>
+    <a class="fotolink" id="g-foto-alt" target="_blank" rel="noopener" hidden>Ver fotografias no iNaturalist
+      <span>a imagem não é exibida aqui por restrição de licença</span></a>
     <dl id="g-corpo"></dl>
   </div>
 </aside>
@@ -634,18 +652,33 @@ var LICENCA = {"cc0":"CC0", "cc-by":"CC BY", "cc-by-sa":"CC BY-SA", "cc-by-nc":"
 function mostrarFoto(o){
   var fig = document.getElementById("g-foto");
   var img = document.getElementById("g-foto-img");
+  var alt = document.getElementById("g-foto-alt");
   fig.hidden = true;                      // so aparece se a imagem carregar de fato
+  alt.hidden = true;
   img.removeAttribute("src");
   var f = o._f;
-  if (!f || !f[0]) return;
+  if (!f) return;
+
+  // sem licenca que permita exibir: oferece o link, que nao reproduz a obra
+  if (!f[0]){
+    if (f[1]){
+      alt.href = "https://www.inaturalist.org/taxa/" + f[1];
+      alt.hidden = false;
+    }
+    return;
+  }
+
   img.onload = function(){ fig.hidden = false; };
-  img.onerror = function(){ fig.hidden = true; };   // rede bloqueada: some, sem icone quebrado
+  img.onerror = function(){                 // rede bloqueada ou foto removida:
+    fig.hidden = true;                      // cai para o link, se houver
+    if (f[1]){ alt.href = "https://www.inaturalist.org/taxa/" + f[1]; alt.hidden = false; }
+  };
   img.alt = "Fotografia de " + o.nome_cientifico;
   document.getElementById("g-foto-link").href = "https://www.inaturalist.org/photos/" + f[0];
   document.getElementById("g-foto-cred").innerHTML =
-    "<span>&copy; <b>" + esc(f[3] || "autor não identificado") + "</b></span>" +
-    "<span>" + esc(LICENCA[f[2]] || f[2]) + "</span><span>via iNaturalist</span>";
-  img.src = (SERVIDOR[f[1]] || SERVIDOR.t) + f[0] + "/medium.jpg";
+    "<span>&copy; <b>" + esc(f[4] || "autor não identificado") + "</b></span>" +
+    "<span>" + esc(LICENCA[f[3]] || f[3]) + "</span><span>via iNaturalist</span>";
+  img.src = (SERVIDOR[f[2]] || SERVIDOR.t) + f[0] + "/medium.jpg";
 }
 
 function abrir(id){
