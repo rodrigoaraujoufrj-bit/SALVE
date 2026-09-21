@@ -93,6 +93,11 @@ e não exibir nada, o painel tem três estados:
 | licença NC, ou sem foto mas com táxon no iNaturalist | link "Ver fotografias no iNaturalist" |
 | sem táxon no iNaturalist | nada |
 
+O iNaturalist preserva a extensão do arquivo original, então a imagem pode ser `medium.jpeg`,
+`medium.jpg` ou `medium.png`. O `busca_fotos_inat.py` grava essa extensão na coluna `ext`; para
+dados coletados antes dessa coluna existir, a página tenta as três em ordem antes de cair para o
+link. Montar a URL com `.jpg` fixo faz o S3 responder `NoSuchKey` e a foto some sem erro aparente.
+
 O link não reproduz a obra: a foto continua sendo exibida na plataforma do próprio autor, sob os
 termos dele. Isso leva a cobertura entre as espécies ameaçadas de 11% (só imagem livre) para 80%
 (imagem ou link), sem exposição de licença.
