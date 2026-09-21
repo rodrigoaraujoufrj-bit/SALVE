@@ -510,6 +510,9 @@ var BLOCOS = [
 
 var SERVIDOR = {s: "https://inaturalist-open-data.s3.amazonaws.com/photos/",
                 t: "https://static.inaturalist.org/photos/"};
+// O iNaturalist preserva a extensao do arquivo original. Quando a coleta nao a
+// registrou, tenta nesta ordem antes de desistir e cair para o link.
+var EXTENSOES = ["jpeg", "jpg", "png"];
 var LICENCA = {"cc0":"CC0", "cc-by":"CC BY", "cc-by-sa":"CC BY-SA", "cc-by-nc":"CC BY-NC",
                "cc-by-nc-sa":"CC BY-NC-SA", "cc-by-nd":"CC BY-ND", "cc-by-nc-nd":"CC BY-NC-ND"};
 
@@ -532,17 +535,24 @@ function mostrarFoto(o){
     return;
   }
 
-  img.onload = function(){ fig.hidden = false; };
-  img.onerror = function(){                 // rede bloqueada ou foto removida:
-    fig.hidden = true;                      // cai para o link, se houver
-    if (f[1]){ alt.href = "https://www.inaturalist.org/taxa/" + f[1]; alt.hidden = false; }
-  };
   img.alt = "Fotografia de " + o.nome_cientifico;
   document.getElementById("g-foto-link").href = "https://www.inaturalist.org/photos/" + f[0];
   document.getElementById("g-foto-cred").innerHTML =
     "<span>&copy; <b>" + esc(f[4] || "autor não identificado") + "</b></span>" +
     "<span>" + esc(LICENCA[f[3]] || f[3]) + "</span><span>via iNaturalist</span>";
-  img.src = (SERVIDOR[f[2]] || SERVIDOR.t) + f[0] + "/medium.jpg";
+
+  var base = (SERVIDOR[f[2]] || SERVIDOR.t) + f[0] + "/medium.";
+  var lista = f[5] ? [f[5]] : EXTENSOES;    // extensao conhecida: uma tentativa so
+  img.onload = function(){ fig.hidden = false; };
+  (function tenta(i){
+    if (i >= lista.length){                 // acabaram as extensoes: cai para o link
+      fig.hidden = true;
+      if (f[1]){ alt.href = "https://www.inaturalist.org/taxa/" + f[1]; alt.hidden = false; }
+      return;
+    }
+    img.onerror = function(){ tenta(i + 1); };
+    img.src = base + lista[i];
+  })(0);
 }
 
 function abrir(id){

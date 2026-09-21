@@ -55,7 +55,7 @@ POR_MINUTO = 60          # limite pedido pelo iNaturalist
 LICENCAS = ["cc0", "cc-by", "cc-by-sa", "cc-by-nd",
             "cc-by-nc", "cc-by-nc-sa", "cc-by-nc-nd"]
 PESO = {l: i for i, l in enumerate(LICENCAS)}
-COLUNAS = ["nome_cientifico", "taxon_id", "foto_id", "host", "licenca", "autor", "erro"]
+COLUNAS = ["nome_cientifico", "taxon_id", "foto_id", "host", "ext", "licenca", "autor", "erro"]
 
 AMEACADAS = {"CR", "EN", "VU"}
 GLOBAIS = {"CR", "EN", "VU", "EX", "EW"}
@@ -139,6 +139,20 @@ def host_de(url):
     return "s3" if "inaturalist-open-data" in (url or "") else "static"
 
 
+def ext_de(url):
+    """
+    O iNaturalist preserva a extensao do arquivo original: medium.jpeg, medium.png,
+    medium.jpg. Montar a URL com .jpg fixo faz o S3 responder NoSuchKey para tudo
+    que nao for jpg, e a foto some sem erro aparente.
+    """
+    cauda = (url or "").rsplit("/", 1)[-1]
+    if "." in cauda:
+        e = cauda.rsplit(".", 1)[-1].split("?")[0].lower()
+        if e in ("jpg", "jpeg", "png", "gif", "webp"):
+            return e
+    return ""
+
+
 def escolher(fotos):
     """melhor foto com licenca livre, ou None"""
     livres = []
@@ -151,7 +165,7 @@ def escolher(fotos):
     livres.sort(key=lambda x: x[0])
     _, f, lic = livres[0]
     url = f.get("medium_url") or f.get("url") or ""
-    return {"foto_id": f["id"], "host": host_de(url), "licenca": lic,
+    return {"foto_id": f["id"], "host": host_de(url), "ext": ext_de(url), "licenca": lic,
             "autor": (f.get("attribution_name") or "").strip()}
 
 
